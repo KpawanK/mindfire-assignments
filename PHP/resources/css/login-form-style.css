@@ -1,0 +1,132 @@
+/*---------------------------------------------------------------------*/
+/*                BASIC SETUP                                          */
+/*--------------------------------------------------------------------*/
+
+*{
+    margin :0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*---------------------------------------------------------------------*/
+/*                REUSABLE CODE                                          */
+/*--------------------------------------------------------------------*/
+
+.row{
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+header{
+    background-color:  rgba(203, 201, 201, 0.29);
+    height: 90px;;
+}
+h1{
+    margin-top: 20px;
+    font-size: 400%;
+    margin-left: -23px;
+    font-weight: 300 !important; 
+}
+h2{
+    font-size: 300%;
+    color: #2c3e62;
+}
+.text{
+    font-size: 150%;
+    margin-left: 7px;
+    color: #2c3e62;
+}
+/*----------------FORM LABEL DECORATION----------------------*/
+.login_credentials{
+    float: left;
+    margin-top: -48px;
+    margin-left: 603px;   
+}
+.label_tags{
+    margin-left: 50px;
+}
+label{
+    font-size:  136%;
+/*    color:#e67e22;   */
+    color: #000;
+}
+
+/*----------------FORM BUTOON DECORATION----------------------*/
+input[type=text],
+input[type=password]{
+    
+    padding: 7px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+input[type=submit]{
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 180px;
+    background-color: #e67e22;
+    border: 1px solid #e67e22;
+    color: #fff;
+    transition: background-color 0.2s,border 0.2s,color 0.2s;
+    
+}
+input[type=submit]:hover,
+input[type=submit]:active{
+    background-color: #cf6d17;
+}
+
+/*---------------------CREATE ACCOUNT SECTION-----------------------*/
+.create_account input[type=text],
+.create_account input[type=password]{
+    width: 80%;
+    padding: 7px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.signUp{
+    margin-left: 182px;
+    margin-top: 78px;
+}
+.policy{
+    font-size: 13px;
+    margin-top: 9px;
+}
+/*--------------------------------PICTURE SECTION--------------------------------*/
+.mindfire_pics{
+    list-style: none;
+    width: 100%;
+}
+.mindfire_pics li{
+    display:block;
+    float: left;
+    width: 50%;
+    overflow: hidden;
+    background-color: #000; 
+}
+.office_pic{
+    opacity: 0.7;
+    width:100%;
+    height: auto;
+    transform: scale(1.15);
+    transition:transform 0.5s,opacity 0.5s;
+}
+.office_pic:hover{
+    opacity: 1;
+    transform: scale(1.05);
+}
+.logo{
+    position: absolute;
+    top: 349px;
+    width: 19%;
+    height: 123px;
+    left: 91px;
+}
+/*------------------------ALERT MESSAGES ----------------------------------*/
+.result{
+    position: absolute;
+    left:800px;
+    top: 365px;
+    color: red;
+}
