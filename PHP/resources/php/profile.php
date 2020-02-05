@@ -4,7 +4,12 @@
 <?php include "../../includes/header.php"?>
 <?php include "functions.php"; ?>
 <?php include "userValidation.php";?>
-
+<?php 
+    // Check user login or not
+    if(!isset($_SESSION[user_id])){
+        header('Location: login-form.php');
+    }
+?>
 
 <!--------------------------------------HANDLING POST-REQUEST------------------------------------------------------>
 <?php

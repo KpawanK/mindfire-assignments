@@ -6,6 +6,14 @@
     <link rel="stylesheet" type="text/css" href="/PHP/vendors/css/Grid.css">
     <link rel="stylesheet" type="text/css" href="/PHP/vendors/css/ionicons.min.css">
     <title>Login body</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-mindfire/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-mindfire/favicon-16x16.png">
+    <link rel="manifest" href="../../../favicon-mindfire/site.webmanifest">
+    <link rel="mask-icon" href="../../../favicon-mindfire/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="../../../favicon-mindfire/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="../../../favicon-mindfire/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
 </head>
 <body style="overflow-x:hidden"> 
 <header>
