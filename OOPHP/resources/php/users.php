@@ -20,6 +20,7 @@ class Users extends db{
     }
     
     function validate_password($password){
+    $temp = $this->test_input($password);
     if(strlen($password)<7)
         return "Password Length should be greater than or equal to 7";
     return true;

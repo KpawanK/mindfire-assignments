@@ -138,7 +138,7 @@ footer p{
 .profile-features{
     height: 450px;
 }
-input[type=submit]{
+input[type=button]{
     display: inline-block;
     padding: 10px 30px;
     border-radius: 180px;
@@ -148,8 +148,8 @@ input[type=submit]{
     transition: background-color 0.2s,border 0.2s,color 0.2s;
     margin-left: 169px;
 }
-input[type=submit]:hover,
-input[type=submit]:active{
+input[type=button]:hover,
+input[type=button]:active{
     background-color: #cf6d17;
 }
 
@@ -160,12 +160,21 @@ input[type=radio]{
     color: #000;
 }
 
-input[type=text],
-input[type=email]{
+input[type=text]:invalid,
+input[type=email]:invalid{
     width: 55%;
     padding: 7px;
     border-radius: 3px;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
+    border: 2px solid red;
+    text-align: center;
+}
+input[type=text]:valid,
+input[type=email]:valid{
+    width: 55%;
+    padding: 7px;
+    border-radius: 3px;
+    border: 1px solid black;
     text-align: center;
 }
 
@@ -197,20 +206,20 @@ input[type=email]{
     color: red;
     
 }
-/*
-.resume-heading{
-     position: absolute;
-    top: 395px;
-    left: 1060px;
-}
-.resume{
-    position: absolute;
-    top: 420px;
-    left: 1060px;
-}
-*/
-
 /*---------------------------------------BUTTON-----------------------------------------------*/
 .btn{
     margin: -36px;
 }
+
+/*------------------------------RESPONSE TET---------------------------------------------*/
+h4 {
+    background-color: #008000ab;
+    width: 38%;
+    height: 27px;
+    margin-left: 415px;
+    border-radius: 5px;
+    margin-top: -493px;
+    position: absolute;
+    text-align: center;
+    display: none;
+  }

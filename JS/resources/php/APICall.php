@@ -1,3 +1,4 @@
+<?php session_start() ;?>
 <?php
 class APICall{
     private $obj;

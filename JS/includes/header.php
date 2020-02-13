@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/PHP/resources/css/login-body-style.css">
-    <link rel="stylesheet" type="text/css" href="/PHP/vendors/css/Grid.css">
-    <link rel="stylesheet" type="text/css" href="/PHP/vendors/css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="/JS/resources/css/login-body-style.css">
+    <link rel="stylesheet" type="text/css" href="/JS/vendors/css/Grid.css">
+    <link rel="stylesheet" type="text/css" href="/JS/vendors/css/ionicons.min.css">
     <title>Login body</title>
     <link rel="apple-touch-icon" sizes="180x180" href="../../../favicon-mindfire/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-mindfire/favicon-32x32.png">
@@ -15,6 +15,7 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-config" content="../../../favicon-mindfire/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body style="overflow-x:hidden"> 
 <header>
