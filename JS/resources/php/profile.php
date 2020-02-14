@@ -1,7 +1,7 @@
 <?php session_start() ;?>
 <?php 
     // Check user login or not
-    if(!isset($_SESSION[user_id])){
+    if(!isset($_SESSION['user_id'])){
         header('Location: login-form.php');
     }
 ?>
@@ -18,32 +18,35 @@
         $skillRes=array();       
         $select_columns = array("user_name","email","phone_number","gender","age","state","images ");
         $cond = array(
-            "id" => $_SESSION[user_id],
+            "id" => $_SESSION['user_id'],
         );
         $result = $newUser->selectTable("users",$select_columns,$cond);
         if(!$result->num_rows)
             die("Query failed to extract the user information".mysqli_error($connection));   
         $row = mysqli_fetch_assoc($result);
-        $nameRes=$row[user_name];
-        $emailRes=$row[email];
-        $numberRes=$row[phone_number];
-        $genderRes=$row[gender];
-        $ageRes=$row[age];
-        $stateRes=$row[state];
-        $imglocRes=$row[images];
+        $nameRes=$row['user_name'];
+        $emailRes=$row['email'];
+        $numberRes=$row['phone_number'];
+        $genderRes=$row['gender'];
+        $ageRes=$row['age'];
+        $stateRes=$row['state'];
+        $imglocRes=$row['images'];
         
+        // var_dump($nameRes);
+        // die;
         $select_columns = array( " course_id " );
         $cond = array(
-            "user_id" => $_SESSION[user_id],
+            "user_id" => $_SESSION['user_id'],
         );
         $result = $newUser->selectTable("users_has_skills",$select_columns,$cond);
         if(!$result)
             die("Query failed to extract the user skills information".mysqli_error($connection));
         
         while($row = mysqli_fetch_assoc($result)){
-            array_push($skillRes,$row[course_id]);
+            array_push($skillRes,$row['course_id']);
         }
     }
+    //var_dump($nameRes);die;
 ?>
 
 <?php include "../../includes/header.php"?>
@@ -57,7 +60,7 @@
                     <label for="name">Name</label>
                 </div>
                 <div class="col span-2-of-3">
-                    <input type="text" name="name" id="name" placeholder="Your Name" title="Name can have only letters and spaces" required pattern = "[a-zA-Z ]{3,}" value=<?php echo $nameRes?>>
+                    <input type="text" name="name" id="name" placeholder="Your Name" title="Name can have only letters and spaces"  pattern = "[a-zA-Z ]{3,}" value="<?php echo $nameRes; ?>" required>
                 </div>
             </div>
             <div class="row">

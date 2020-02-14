@@ -15,11 +15,14 @@ class profileAPICall{
             "state" => "'".$_POST['state']."'"
         );
         $cond=array(
-            "user_id" => $_SESSION['user_id'],
+            "id" => $_SESSION['user_id'],
         );
         $res = $obj->$methodName("users" , $set_command , $cond);
         
         $skill_command = '';
+        $cond=array(
+            "user_id" => $_SESSION['user_id'],
+        );
         if(!empty($_POST['skills'])) {
             $skill_set = $_POST['skills'];
             $len = count($skill_set)-1;
