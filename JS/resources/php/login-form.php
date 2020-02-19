@@ -15,6 +15,9 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-config" content="../../../favicon-mindfire/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="858263934289-r0sm76vhqueu7rpd4cb72i0n68nn3nq8.apps.googleusercontent.com.apps.googleusercontent.com">
 </head>
 
 <body style="overflow-x:hidden"> 
@@ -36,6 +39,7 @@
             </div>
         </form>
         <h4 id = "logIn"></h4>
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
     </header>
     <section class="create_account">
         <div class="row">
