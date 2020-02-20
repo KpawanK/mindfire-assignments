@@ -140,14 +140,14 @@
                     $this->view('users/login',$data);
                 }
 
-            } else {
-                //Init data
-                $data = [
-                    'email' => '',
-                    'password' => '',
-                    'email_err' => '',
-                    'password_err' => '',
-                ];
+            }   else {
+                    //Init data
+                    $data = [
+                        'email' => '',
+                        'password' => '',
+                        'email_err' => '',
+                        'password_err' => '',
+                    ];
 
                 //Load View
                 $this->view('users/login',$data);
@@ -169,3 +169,4 @@
             redirect('users/login'); 
         }
     }
+?>
