@@ -2,14 +2,17 @@
     class Pages extends Controller{
         public function __construct(){
             $this->pageModel = $this->model('Page');
+            $this->movieModel = $this->model('Movie');
         }
 
         public function index(){
-            $movies = $this->pageModel->findThreeMovies();
+            $carousels = $this->pageModel->getCarousel();
+            $movies = $this->movieModel->getMovies();
             $data = [
-                'movies' => $movies
+                'carousels' => $carousels,
+                'movies' => $movies,
             ];
-            $this->view('pages/index' , $data);
+            $this->view('pages/index' , $data);   
         }
         
     }
