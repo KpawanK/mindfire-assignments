@@ -1,4 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="<?php echo URLROOT;?>"><?php echo SITENAME;?></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -6,8 +8,8 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" width="250px">
+        <form class="form-inline my-2 my-lg-0" action="<?php echo URLROOT ;?>/movies/findMovie" method="post">
+            <input class="form-control mr-sm-2" name="search" type="text" placeholder="Search for Movies" aria-label="Search" style="width:450px;">
         </form>  
     </ul>
   </div>

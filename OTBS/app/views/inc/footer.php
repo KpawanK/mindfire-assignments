@@ -1,4 +1,4 @@
-    </div>
+    
     <footer class="jumbotron mt-3" style="margin-bottom: 0;">
         <h4>OTBS</h4>
     </footer>

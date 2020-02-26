@@ -1,6 +1,6 @@
 <?php include APPROOT . '/views/inc/header.php';?>
     <!--Carousel Wrapper-->
-    <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
+    <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails mt-3" data-ride="carousel">
         <!--Slides-->
         <div class="carousel-inner" role="listbox">
             <?php foreach($data['carousels'] as $key => $carousel) :?>
@@ -29,18 +29,22 @@
             <?php endforeach; ?>
         </ol>
     </div>
-    <h2 class="mt-3"><strong>Movies</strong></h2>
+    <style>
+        a:hover{
+            text-decoration: none;
+        }
+    </style>
     <div class="container mt-5">
+        <h2 class="mt-3"><strong>Movies</strong></h2>
         <div class="row">
             <?php foreach($data['movies'] as $movie) :?>
                 <div class="card mr-5" style="width: 18rem;">
-                    <a href="<?php echo URLROOT .'/movies/getMovieDescription/'. $movie->movie_id ;?>" style="color: black;">
-                        <img src="<?php echo URLROOT .'/img/'.$movie->movie_image?>" class="card-img-top" alt="..." style="height:286px" width="286px">
+                    <a href="<?php echo URLROOT .'/movies/index/'. $movie->movie_id ;?>" style="color: black;">
+                        <img src="<?php echo URLROOT .'/img/'.$movie->movie_image?>" class="card-img-top" alt="..." style="height:286px;width:286px">
                         <div class="card-body">
                             <p class="card-text">
                                 <i class="fa fa-heart" style="color: red;"></i>
                                 <?php echo ' ' . $movie->movie_name ;?>
-
                             </p>
                         </div>
                     </a>
