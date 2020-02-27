@@ -25,7 +25,7 @@
             $name = $_POST['search'];
             $movieDetail = $this->movieModel->getMovieDescriptionByName($name);
             if(!$movieDetail){
-                // redirect('pages');
+                 redirect('pages');
             } else {
                 $data = [
                     'movieDescription' => $movieDetail,

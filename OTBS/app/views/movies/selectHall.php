@@ -1,8 +1,27 @@
 <?php include APPROOT . '/views/inc/header.php';?>
     <style>
+        body{
+            background-color: #f2f2f2;
+        }
         .showTimes{
-            margin: 8px;
+            background-color: white;
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid white;
+            border-radius: 3px;
+        }
+        .timings li{
+            border: 0.5px solid grey;
+            border-radius: 4px;
+            display: inline-block;
+            padding: 8px;
+            color: green;
+            font-size: 15px;
             
+        }
+        .timings li a{
+            color: green;
+            text-decoration: none;
         }
     </style>
     <section class="showTimes">
@@ -20,18 +39,29 @@
             <hr>
             <div class="row">
                 <div class="col-md-4">
-                    <a href="">
-                        <h5 style="font-size: 18px; color:black;"><?php echo $hall->hall_name;?></h5>
-                    </a>
+                    <ul style="list-style: none; color:black;">
+                        <li>
+                            <a href="" style="color: black;">
+                                <b><?php echo $hall->hall_name;?></b>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="col-md-8">
-                    <a href="">
-                        <h5 style="font-size: 18px; color:black;">HII</h5>
-                    </a>
+                <div class="col-md-8 mt-3">
+                    <ul class="timings">
+                        <?php 
+                            $timings = explode("," , $hall->timings);
+                            foreach( $timings as $timing) : ?>
+                                <li class="mr-2">
+                                    <a href="">
+                                        <?php echo $timing ;?>
+                                    </a>
+                                </li>
+                            <?php endforeach;
+                        ?>
+                    </ul>
                 </div>
             </div>
         <?php endforeach; ?>
-        
-        
     </section>
     
