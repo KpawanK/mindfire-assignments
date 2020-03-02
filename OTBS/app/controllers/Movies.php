@@ -12,14 +12,6 @@
             $this->view('movies/index' , $data);   
         } 
 
-        public function selectHall($id){
-            $hallDetails = $this->movieModel->selectHall($id);
-            $data=[
-                'hallDetails' => $hallDetails,
-            ];
-            $this->view('movies/selectHall' , $data);
-        }
-        
         public function findMovie(){
             //Process the data
             $name = $_POST['search'];

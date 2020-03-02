@@ -31,7 +31,7 @@
                    </div>
                    <div class="mt-5 book-tickets">  
                         <?php if(1 == $data['movieDescription']->movie_status) :?>
-                            <a href="<?php echo URLROOT .'/movies/selectHall/'. $data['movieDescription']->movie_id ;?>" class="btn btn-primary pull-right mr-5 mt-5">
+                            <a href="<?php echo URLROOT .'/theaters/selectTheater/'. $data['movieDescription']->movie_id ;?>" class="btn btn-primary pull-right mr-5 mt-5">
                                 <i class="fa fa-ticket"></i>Book Tickets
                             </a>
                         <?php endif; ?>
@@ -41,4 +41,3 @@
         </div>
     </div>
     
-<?php include APPROOT . '/views/inc/footer.php';?>
