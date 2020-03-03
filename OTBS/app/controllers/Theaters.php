@@ -8,8 +8,6 @@
         public function selectTheater($id){
             $theaterDetails = $this->theaterModel->selectTheater($id);
             $movieDetails = $this->movieModel->getMovieDescription($id);
-            // var_dump($theaterDetails);
-            // die();
             $data=[
                 'theaterDetails' => $theaterDetails,
                 'movieDetails' => $movieDetails,
