@@ -7,11 +7,6 @@
         height: 450px;
         width: 515px;
     }
-    .checked{
-        
-        padding: 6px 10px;
-        border-radius: 2px;
-    }
 </style>
 <div class="bg-dark">
     <div class="row mx-3">
@@ -36,24 +31,30 @@
         foreach($data['theaterDetails'] as $theater){
             if(!in_array($theater->hall_name,$theaterNames)){
                 $theaterNames[$theater->hall_name]=[];
+                $theaterNames[$theater->hall_name]=array( 
+                    'movie_id' => $theater->movie_id,
+                    'hall_id' => $theater->hall_id,
+                    'timing' => array(),
+                );
             }
         }
         foreach($data['theaterDetails'] as $theater){
-            array_push($theaterNames[$theater->hall_name],$theater->timings);
+            array_push($theaterNames[$theater->hall_name]['timing'],$theater->timings);
         }
 ?>
         <div class="container">
-            <?php foreach($theaterNames as $key=>$name) :?>
+            <?php foreach($theaterNames as $key=>$value) :?>
                 <div class="row">
                     <div class="col-4 pt-3">
-                        <a href="#" class="text-dark"><strong><?php echo $key ;?> </strong></a>
+                        <a href="#" class="text-dark"><strong><?php echo $key;?> </strong></a>
                     </div>
                     <div class="col-8 pt-4">
-                        <ul class="list-unstyled list-inline"> 
-                            <?php foreach($name as $temp) : ?>
+                        <ul class="list-unstyled list-inline" id="movie-time"> 
+                            <?php foreach($value['timing'] as $temp) : ?>
                                 <li class="list-inline-item">
-                                    <a href="#" class="btn btn-light text-success" role="button"
-                                    data-toggle="modal" data-target="#noOfTicketModal" ><?php echo $temp; ?></a>
+                                    <button class="btn btn-light text-success" data-toggle="modal" data-target="#notes" data-movie-id =<?php echo $value['movie_id'] ;?> data-hall-id=<?php echo $value['hall_id'] ;?>>
+                                        <?php echo $temp; ?>
+                                    </button>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
@@ -63,37 +64,41 @@
             <?php endforeach; ?>
         </div>
 </div>
-<!-- NUMBER OF TICKET SELECTION MODAL -->
-<div class="modal fade m-3" id="noOfTicketModal">
+<!-- NOTES MODAL -->
+<div class="modal fade m-3" id="notes">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <p class="align-self">How many seats?</p>
+                <h5 class="modal-title">Notes</h5>
+                <button class="close" data-dismiss="modal">&times;</button>
             </div>
-             <div class="modal-body">
-                 <div class="container">
-                    <ul class="list-unstyled list-inline ml-5">
-                        <li class="list-inline-item checked" id="1" onmouseover="seatMark(this)" onclick="">1</li>
-                        <li class="list-inline-item checked" id="2" onmouseover="seatMark(this)" onclick="">2</li>
-                        <li class="list-inline-item checked" id="3" onmouseover="seatMark(this)" onclick="">3</li>
-                        <li class="list-inline-item checked" id="4" onmouseover="seatMark(this)" onclick="">4</li>
-                        <li class="list-inline-item checked" id="5" onmouseover="seatMark(this)" onclick="">5</li>
-                        <li class="list-inline-item checked" id="6" onmouseover="seatMark(this)" onclick="">6</li>
-                        <li class="list-inline-item checked" id="7" onmouseover="seatMark(this)" onclick="">7</li>
-                        <li class="list-inline-item checked" id="8" onmouseover="seatMark(this)" onclick="">8</li>
-                        <li class="list-inline-item checked" id="9" onmouseover="seatMark(this)" onclick="">9</li>
-                    </ul>
-                    <button class="btn btn-primary btn-block">
-                        Select Seats
-                    </button>
-                 </div>
-             </div>
+            <div class="modal-body">
+                <ol>
+                    <li>Tickets are compulsory for children 3 years and above.</li>
+                    <li>Outside eatables and beverages are not allowed.</li>
+                    <li>The ticket is not transferable or refundable.</li>
+                    <li>Rights of admission are reserved.</li>
+                    <li>If there is any show breakdown or cancellation due to technical reasons, your money will be 
+                        refunded online by Online booking partner and not at the theatre.
+                    </li>
+                    <li>Only Online booking partner server messages are allowed, printouts & forwarded messages are 
+                        not allowed for both F&B and movie tickets.
+                    </li>
+                </ol>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+                <a id="policy_accept" href="<?php echo URLROOT .'/seats/selectSeats/'  ;?>" class="btn btn-primary"> Accept</a>
+            </div>
         </div>
     </div>
 </div>
+
 <script>
-    function seatMark(item){
-        console.log(getElementById(item.id));
-    }
+    var controller_method_path = "<?php echo URLROOT.'/seats/selectSeats/'; ?>";
+    $('#movie-time .btn').click( function(){
+        var hallId = $(this).attr("data-hall-id");
+        $('#policy_accept').attr("href",controller_method_path + hallId );
+    });
 </script>
 <?php include APPROOT . '/views/inc/footer.php';?>
