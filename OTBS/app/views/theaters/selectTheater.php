@@ -88,7 +88,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
-                <a id="policy_accept" href="<?php echo URLROOT .'/seats/selectSeats/'  ;?>" class="btn btn-primary"> Accept</a>
+                <a id="policy_accept"  class="btn btn-primary"> Accept</a>
             </div>
         </div>
     </div>
