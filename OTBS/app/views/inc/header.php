@@ -13,7 +13,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
     crossorigin="anonymous"></script>
     
-  
+    <script src="<?php echo URLROOT;?>/js/JsLocalSearch.js"></script>
+    
+    <script>
+        URLROOT = 'http://otbs.com';
+        APPROOT = '/var/www/html/my-assignments/OTBS/app';
+    </script>
+    
+
     <title><?php echo SITENAME ;?></title>
 </head>
 <body>

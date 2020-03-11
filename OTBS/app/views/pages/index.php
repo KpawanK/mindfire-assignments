@@ -36,9 +36,9 @@
     </style>
     <div class="container mt-5">
         <h2 class="mt-3"><strong>Movies</strong></h2>
-        <div class="row">
+        <div class="row ml-2">
             <?php foreach($data['movies'] as $movie) :?>
-                <div class="card mr-5" style="width: 18rem;">
+                <div class="card mr-5 mb-5 " style="width: 18rem;">
                     <a href="<?php echo URLROOT .'/movies/index/'. $movie->movie_id ;?>" style="color: black;">
                         <img src="<?php echo URLROOT .'/img/'.$movie->movie_image?>" class="card-img-top" alt="..." style="height:286px;width:286px">
                         <div class="card-body">
@@ -53,3 +53,4 @@
         </div>
     </div>
 
+<?php include APPROOT . '/views/inc/footer.php';?>
