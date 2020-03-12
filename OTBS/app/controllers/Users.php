@@ -64,13 +64,15 @@
 
                     //Register User
                     if($this->userModel->register($data)){
+                        send_mail('Test',98989,$data['email']);
+                        flash('register_success','You are registered and can log in');
                         redirect('users/login');
                     } else {
                         die('Something went wrong');
                     }
                 } else {
                     //Load view with errors
-                    $this->view('users/register',$data);
+                    $this->view('users/register',$data);    
                 }
 
             } else{
@@ -116,15 +118,30 @@
                 //Validate Password
                  if(empty($data['password'])){
                     $data['password_err'] = 'Please enter password';
-                } elseif(strlen($data['password'])<6){
-                    $data['password_err'] = 'Password must be at least 6 characters';
-                }
+                } 
 
+                //Check for user/email
+                if($this->userModel->findUserByEmail($data['email'])){
+                    //User found
+
+                } else {
+                    //User not found
+                    $data['email_err'] = "No user found";
+                }
 
                 //Make sure errors are empty
                 if(empty($data['email_err']) && empty($data['password_err'])){
                     //Validated
-                    die('SUCCESS');
+                    //Check and set logged in user
+                    $loggedInUser = $this->userModel->login($data['email'],$data['password']);
+                    
+                    if($loggedInUser){
+                        //Create Session 
+                        $this->createUserSession($loggedInUser);
+                    } else {
+                        $data['password_err'] = 'Password Incorrect';
+                        $this->view('users/login',$data);
+                    }
                 } else {
                     //Load view with errors
                     $this->view('users/login',$data);
@@ -147,4 +164,22 @@
                 $this->view('users/login',$data);
             }
         }
+
+        public function createUserSession($user){
+            $_SESSION['user_id'] = $user->user_id;
+            $_SESSION['user_email'] = $user->user_email;
+            $_SESSION['user_name'] = $user->user_name;
+            redirect('pages/index');
+        }   
+
+        public function logout(){
+            unset($_SESSION['user_id']);
+            unset($_SESSION['user_email']);
+            unset($_SESSION['user_name']);
+
+            session_destroy();
+            redirect('pages/index');
+        }
+
+        
     }

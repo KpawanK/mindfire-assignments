@@ -218,3 +218,4 @@
         
     });
 </script>
+<?php include APPROOT . '/views/inc/footer.php';?>
