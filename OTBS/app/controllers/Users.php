@@ -63,8 +63,7 @@
                     $data['password'] = password_hash($data['password'],PASSWORD_DEFAULT);
 
                     //Register User
-                    if($this->userModel->register($data)){
-                        send_mail('Test',98989,$data['email']);
+                    if($this->userModel->register($data) && send_mail('Test',98989,$data['email'])){
                         flash('register_success','You are registered and can log in');
                         redirect('users/login');
                     } else {

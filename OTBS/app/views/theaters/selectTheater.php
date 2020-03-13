@@ -8,8 +8,11 @@
         width: 515px;
     }
 </style>
+<div style="background-color: #212529" class="text-white px-3">
+    Movies
+</div>
 <div class="bg-dark">
-    <div class="row mx-3">
+    <div class="row px-3">
         <div class="col-md-6">
             <h1 class="display-5 text-white pt-4"><?php echo $data['movieDetails']->movie_name ;?></h1>
             <p>
@@ -18,14 +21,61 @@
             </p>
         </div>
         <div class="col-md-6">
-            <h1 class="display-5 text-white pt-4"><?php echo $data['movieDetails']->movie_name ;?></h1>
+            <div class="row px-3">
+                <div class="dir_info mt-4">
+                    <span style="font-size: 10px;" class="text-white">DIRECTOR</span>
+                    <br>
+                        <div class="row ml-1 mr-2">
+                            <span class="m-2">
+                                <div>
+                                <img style="border-radius:50%;height:40px;" alt="Dan Scanlon" title="Dan Scanlon" data-error="//in.bmscdn.com/webin/profile/user.jpg" data-src="//in.bmscdn.com/iedb/artist/images/website/poster/large/dan-scanlon-36180-03-03-2020-03-12-59.jpg" src="//in.bmscdn.com/iedb/artist/images/website/poster/large/dan-scanlon-36180-03-03-2020-03-12-59.jpg"></a>
+
+                                </div>
+                                
+                                <span style="font-size: 10px;" class="text-white">Name</span>
+                            </span>
+                            <span class="m-2">
+                                <div>
+                                <img style="border-radius:50%;height:40px;" alt="Dan Scanlon" title="Dan Scanlon" data-error="//in.bmscdn.com/webin/profile/user.jpg" data-src="//in.bmscdn.com/iedb/artist/images/website/poster/large/dan-scanlon-36180-03-03-2020-03-12-59.jpg" src="//in.bmscdn.com/iedb/artist/images/website/poster/large/dan-scanlon-36180-03-03-2020-03-12-59.jpg"></a>
+
+                                </div>
+                                
+                                <span style="font-size: 10px;" class="text-white">Name</span>
+                            </span>
+                            <span class="m-2">
+                                <div>
+                                <img style="border-radius:50%;height:40px;" alt="Dan Scanlon" title="Dan Scanlon" data-error="//in.bmscdn.com/webin/profile/user.jpg" data-src="//in.bmscdn.com/iedb/artist/images/website/poster/large/dan-scanlon-36180-03-03-2020-03-12-59.jpg" src="//in.bmscdn.com/iedb/artist/images/website/poster/large/dan-scanlon-36180-03-03-2020-03-12-59.jpg"></a>
+
+                                </div>
+                                
+                                <span style="font-size: 10px;" class="text-white">Name</span>
+                            </span>
+
+                        </div>
+                </div>
+
+                <div class="cast_info mt-4">
+                    <span style="font-size:10px;" class="text-white">CAST & CREW</span>
+                    <br>
+                    <div class="row ml-1">
+                        <span class="m-2">
+                            <div>
+                            <img style="border-radius:50%;height:40px;" alt="Dan Scanlon" title="Dan Scanlon" data-error="//in.bmscdn.com/webin/profile/user.jpg" data-src="//in.bmscdn.com/iedb/artist/images/website/poster/large/dan-scanlon-36180-03-03-2020-03-12-59.jpg" src="//in.bmscdn.com/iedb/artist/images/website/poster/large/dan-scanlon-36180-03-03-2020-03-12-59.jpg"></a>
+
+                            </div>
+                            
+                            <span style="font-size: 10px;" class="text-white">Name</span>
+                        </span>
+                    </div>
+                </div>
+            </div>            
         </div>
     </div>
 </div>
 
 <!-- HALL TIMIMGS CARD -->
 
-<div class="card m-3">
+<div class="card m-3">  
 <?php 
     $theaterNames=[];
         foreach($data['theaterDetails'] as $theater){

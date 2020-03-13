@@ -6,7 +6,7 @@
     function send_mail($subject,$body,$to){
         $mail = new PHPMailer\PHPMailer\PHPMailer();
         $mail->IsSMTP();
-        $mail->SMTPDebug = 1;
+        $mail->SMTPDebug = 0;
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = 'ssl';
         $mail->Host = "smtp.gmail.com";
@@ -14,13 +14,14 @@
         $mail->IsHTML(true);
         $mail->Username = "pawankunu@gmail.com";
         $mail->Password = "p@w@n@6500#";
+        $mail->setfrom( 'noreply@no-reply.com' ,"OTBS");
         $mail->Subject = $subject;
         $mail->Body = 'You one time verification Code is '.$body;
         $mail->addaddress($to);
         if(!$mail->Send()) {
-           var_dump("Error while sending Email.");
+           return false;
         } else {
-            var_dump("Email sent successfully");
+            return true;
         }
     }
     

@@ -1,11 +1,28 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
+	<!-- Navbar look in select seats section -->
 	<?php if(isset($isCheckout)) :?>
-		<div class="btn text-white" id="no-of-tickets" data-toggle="modal" data-target="#noOfTicketModal">
+		<div class="col-6">
+			<a href="javascript:history.go(-1)" class="ml-5"><i class="fa fa-backward text-white"></i></a>
+		</div>
+		<div class="col-6">
+			<div class="float-right">
+				<a href="javascript:history.go(-1)"><i class="fa fa-times text-white mt-2 ml-5"></i></a>
+			</div>
+			<div class="btn text-white float-right" id="no-of-tickets" data-toggle="modal" data-target="#noOfTicketModal">
 				2 tickets 
 				<i class="fa fa-caret-down"></i>
+			</div>			
 		</div>
+		<!-- Navbar look in ticket summary section -->
 		<?php elseif(isset($ticketSummary)) :?>
-			<a class="navbar-brand" href="<?php echo URLROOT;?>"><?php echo SITENAME;?></a>
+			<div class="col-6">
+				<a href="javascript:history.go(-2)" class="ml-5"><i class="fa fa-backward text-white"></i></a>
+			</div>
+			<div class="col-6">
+				<a href="javascript:history.go(-2)" class="float-right"><i class="fa fa-times text-white"></i></a>
+			</div>
+		</div>
+		<!-- Navbar look iin all places  -->
 		<?php else :?>
 			<a class="navbar-brand" href="<?php echo URLROOT;?>"><?php echo SITENAME;?></a>
   			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
