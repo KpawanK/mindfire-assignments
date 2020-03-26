@@ -55,4 +55,35 @@
                 return false;
             }
         }
+
+        //get all User details for admin to view
+        public function getAllusers(){
+            $this->db->query('SELECT user_id,user_name,user_email,
+                              user_image FROM users');
+            
+            //Multi row result
+            $rows = $this->db->resultSet();
+
+            return $rows;
+        }
+
+        //Insert user detail into database for admin
+        public function insertUserRecord($data){
+            $this->db->query('INSERT INTO users(user_name,user_email,
+                              user_password,user_image) 
+                              VALUES (:username,:email,:password,:userImage)');
+            
+            //Bind Values
+            $this->db->bind(':username',$data['username']);
+            $this->db->bind(':email',$data['email']);
+            $this->db->bind(':password',$data['password']);
+            $this->db->bind(':userImage',$data['userImage']);
+
+            //Execute
+            if($this->db->execute()){
+                return true;
+            } else {
+                return false;
+            }
+        }
     }

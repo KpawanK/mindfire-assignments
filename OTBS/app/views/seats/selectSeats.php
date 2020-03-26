@@ -70,8 +70,7 @@
         for($row=0 ; $row < $data['seatInfo']->hall_no_rows ; $row++){
             echo "<div class='seatRowName d-inline-block'>".chr($r+$row)."</div> ";
             for($col=0 ; $col < $data['seatInfo']->hall_no_cols ; $col++):?>
-                    <div class="d-inline-block seat boundary text-muted seatMark"  colNo="<?php echo $col+1 ;?>" rowName="<?php echo chr($r+$row)?>" 
-                    id="<?php echo $count++;?>">
+                    <div class="d-inline-block seat boundary text-muted seatMark" id="<?php echo $count++;?>" rowSeatNo="<?php echo chr($r+$row).($col+1);?>">
                         <span>
                             <?php echo $seat+1;?>
                         </span>
@@ -169,6 +168,7 @@
         $('#no-of-tickets').html(quantity + ' tickets   <i class="fa fa-caret-down"></i>' );
         
     });
+
     var base_image_path = "<?php echo URLROOT.'/img/vehicles/'; ?>";
 
     $('#seatQuantity .btn').hover(function(){
@@ -184,7 +184,9 @@
         $('.imgh').attr("src", base_image_path + file_name );
     }); 
 
-    // Mark Seats
+
+    // SEAT SECTION
+    // Mark Seats by selecting seats with seatMark class and adding Active class to it
     $('.seatMark').on('click' , function(){
         if(0 === remSeats){
             remSeats = toSelect;
@@ -214,8 +216,15 @@
             }
         }
     });
-    $('#pay').on('click',function(){
-        
+    $('#pay').click(function(){
+        seatsSelected=[];
+        $('.seatMark').each(function(){
+            var $this = $(this);
+            if($this.hasClass('seatMarkActive')){
+                seatsSelected.push($this.attr("rowSeatNo"));
+            }
+        });
+        localStorage.setItem('seatsSelected',seatsSelected);
     });
 </script>
 <?php include APPROOT . '/views/inc/footer.php';?>

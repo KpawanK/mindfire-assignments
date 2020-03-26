@@ -22,32 +22,14 @@
         </div>
         <div class="col-md-6">
             <div class="row px-3">
-                <div class="dir_info mt-4">
+                <div class="dir_info mt-4 ml-auto">
                     <span style="font-size: 10px;" class="text-white">DIRECTOR</span>
                     <br>
                         <div class="row ml-1 mr-2">
                             <span class="m-2">
                                 <div>
                                 <img style="border-radius:50%;height:40px;" alt="Dan Scanlon" title="Dan Scanlon" data-error="//in.bmscdn.com/webin/profile/user.jpg" data-src="//in.bmscdn.com/iedb/artist/images/website/poster/large/dan-scanlon-36180-03-03-2020-03-12-59.jpg" src="//in.bmscdn.com/iedb/artist/images/website/poster/large/dan-scanlon-36180-03-03-2020-03-12-59.jpg"></a>
-
                                 </div>
-                                
-                                <span style="font-size: 10px;" class="text-white">Name</span>
-                            </span>
-                            <span class="m-2">
-                                <div>
-                                <img style="border-radius:50%;height:40px;" alt="Dan Scanlon" title="Dan Scanlon" data-error="//in.bmscdn.com/webin/profile/user.jpg" data-src="//in.bmscdn.com/iedb/artist/images/website/poster/large/dan-scanlon-36180-03-03-2020-03-12-59.jpg" src="//in.bmscdn.com/iedb/artist/images/website/poster/large/dan-scanlon-36180-03-03-2020-03-12-59.jpg"></a>
-
-                                </div>
-                                
-                                <span style="font-size: 10px;" class="text-white">Name</span>
-                            </span>
-                            <span class="m-2">
-                                <div>
-                                <img style="border-radius:50%;height:40px;" alt="Dan Scanlon" title="Dan Scanlon" data-error="//in.bmscdn.com/webin/profile/user.jpg" data-src="//in.bmscdn.com/iedb/artist/images/website/poster/large/dan-scanlon-36180-03-03-2020-03-12-59.jpg" src="//in.bmscdn.com/iedb/artist/images/website/poster/large/dan-scanlon-36180-03-03-2020-03-12-59.jpg"></a>
-
-                                </div>
-                                
                                 <span style="font-size: 10px;" class="text-white">Name</span>
                             </span>
 
@@ -72,7 +54,10 @@
         </div>
     </div>
 </div>
-
+<!-- MOVIE DATE SLIDER -->
+<div>
+    Movie Date Slider
+</div>
 <!-- HALL TIMIMGS CARD -->
 
 <div class="card m-3">  

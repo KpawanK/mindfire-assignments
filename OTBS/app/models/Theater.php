@@ -38,4 +38,34 @@
             return $row;
 
         }
+
+        //get all Movie details for admin to view
+        public function getAllTheaters(){
+            $this->db->query('SELECT hall_id,hall_name,hall_seats,
+                              hall_no_rows,hall_no_cols FROM hall');
+            
+            //Multi row result
+            $rows = $this->db->resultSet();
+
+            return $rows;
+        }
+
+        //Insert hall detail into database for admin
+        public function insertHallRecord($data){
+            $this->db->query('INSERT INTO hall(hall_name,hall_seats,hall_no_rows,hall_no_cols) 
+                              VALUES (:hallName,:noOfSeats,:noOfRows,:noOfCols)');
+            
+            //Bind Values
+            $this->db->bind(':hallName',$data['hallName']);
+            $this->db->bind(':noOfSeats',$data['noOfSeats']);
+            $this->db->bind(':noOfRows',$data['noOfRows']);
+            $this->db->bind(':noOfCols',$data['noOfCols']);
+
+            //Execute
+            if($this->db->execute()){
+                return true;
+            } else {
+                return false;
+            }
+        }
     }

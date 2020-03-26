@@ -31,7 +31,7 @@
             <span>Movie Name</span>
             <span>Hall Name</span>
             <br>
-            <span>Ticket Numbers</span>
+            <span><script>document.write(localStorage.getItem('seatsSelected'));</script></span>
             <span>Day,Date</span>
             <span>Time</span>
             <br>
