@@ -11,6 +11,8 @@
 <div style="background-color: #212529" class="text-white px-3">
     Movies
 </div>
+
+<!-- MOVIE DESCRIPTION SECTION -->
 <div class="bg-dark">
     <div class="row px-3">
         <div class="col-md-6">
@@ -20,6 +22,8 @@
                 <i class="fa fa-clock-o text-white"><?php echo ' ' . $data['movieDetails']->movie_time;?></i>
             </p>
         </div>
+
+        <!-- CAST SECTION -->
         <div class="col-md-6">
             <div class="row px-3">
                 <div class="dir_info mt-4 ml-auto">
@@ -54,29 +58,59 @@
         </div>
     </div>
 </div>
+
 <!-- MOVIE DATE SLIDER -->
-<div>
-    Movie Date Slider
+<div id="carousel-example-multi" class="carousel slide carousel-multi-item v-2" data-ride="carousel">
+    <!--Controls-->
+    <div class="controls-top">
+        <a class="btn-floating" href="#carousel-example-multi" data-slide="prev"><span class="carousel-control-prev-icon bg-primary"></span></a>
+        <a class="btn-floating" href="#carousel-example-multi" data-slide="next"><span class="carousel-control-next-icon bg-primary"></span></a>
+    </div>
+    <!--/.Controls--> 
+    <!-- INDICATORS -->
+    <div class="carousel-inner v-2" role="listbox">
+        <div class="carousel-item active">
+            <div class="col-12 col-md-4">
+                <div class="card mb-2">
+                    <img class="card-img-top" src="<?php URLROOT;?>/img/casts/Vicky_Kaushal.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title font-weight-bold">Card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                        <a class="btn btn-primary btn-md btn-rounded">Button</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
 <!-- HALL TIMIMGS CARD -->
 
 <div class="card m-3">  
-<?php 
-    $theaterNames=[];
-        foreach($data['theaterDetails'] as $theater){
-            if(!in_array($theater->hall_name,$theaterNames)){
-                $theaterNames[$theater->hall_name]=[];
-                $theaterNames[$theater->hall_name]=array( 
-                    'movie_id' => $theater->movie_id,
-                    'hall_id' => $theater->hall_id,
-                    'timing' => array(),
-                );
+    <?php if($data['theaterDetails'] == 'false'):?>
+        <div class="text-center">
+            <h3><Strong>No Shows Found!!</Strong></h3>
+        </div>
+    <?php else:
+    // PROCESSING THE HALL DETIALS TO MAKE TIMINGS GROUP TO THEIR HALL NAME
+        $theaterNames=[];
+            foreach($data['theaterDetails'] as $theater){
+                if(!in_array($theater->hall_name,$theaterNames)){
+                    $theaterNames[$theater->hall_name]=[];
+                    $theaterNames[$theater->hall_name]=array( 
+                        'movie_id' => $theater->movie_id,
+                        'hall_id' => $theater->hall_id,
+                        'timing' => array(),
+                    );
+                }
             }
-        }
-        foreach($data['theaterDetails'] as $theater){
-            array_push($theaterNames[$theater->hall_name]['timing'],$theater->timings);
-        }
-?>
+            foreach($data['theaterDetails'] as $theater){
+                array_push($theaterNames[$theater->hall_name]['timing'],$theater->timings);
+            }
+        ?>
+        <!-- DISPLAYING THE PRE PROCESSED DATA  -->
         <div class="container">
             <?php foreach($theaterNames as $key=>$value) :?>
                 <div class="row">
@@ -87,7 +121,7 @@
                         <ul class="list-unstyled list-inline" id="movie-time"> 
                             <?php foreach($value['timing'] as $temp) : ?>
                                 <li class="list-inline-item">
-                                    <button class="btn btn-light text-success" data-toggle="modal" data-target="#notes" data-movie-id =<?php echo $value['movie_id'] ;?> data-hall-id=<?php echo $value['hall_id'] ;?>>
+                                    <button class="btn btn-light text-success m-1" data-toggle="modal" data-target="#notes" data-movie-id =<?php echo $value['movie_id'] ;?> data-hall-id=<?php echo $value['hall_id'] ;?>>
                                         <?php echo $temp; ?>
                                     </button>
                                 </li>
@@ -98,8 +132,11 @@
                 <hr>
             <?php endforeach; ?>
         </div>
+    <?php endif;?>
 </div>
-<!-- NOTES MODAL -->
+
+
+<!-- TERMS AND CONDITION MODAL -->
 <div class="modal fade m-3" id="notes">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -128,6 +165,11 @@
         </div>
     </div>
 </div>
+
+
+
+
+
 
 <script>
     var controller_method_path = "<?php echo URLROOT.'/seats/selectSeats/'; ?>";

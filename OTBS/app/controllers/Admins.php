@@ -37,11 +37,12 @@
                                     <td>".$movie->movie_name."</td>
                                     <td>".$movie->movie_date."</td>
                                     <td>".$movie->movie_time."</td>
-                                    <td>".$movie->movie_image."</td>
+                                    <td><img height='180' width='150' src='".URLROOT."/img/".$movie->movie_image."'></td>
                                     <td>".$movie->movie_content."</td>
                                     <td>".$movie->movie_tags."</td>
                                     <td>".$movie->movie_status."</td>
-                                    <td><span class='btn fa fa-trash text-danger'></span></td>
+                                    <td><a href='".URLROOT."/admins/movies/delete/".$movie->movie_id."'><span class='btn fa fa-trash text-danger'></span></a>
+                                    </td>
                                 </tr>    
                                 ";
                 }
@@ -60,8 +61,8 @@
                         echo 'Failed to entry the movie details'   ;
                     }
                 }
-            } else{
-
+            } else if($param == "delete"){
+                echo($param);
             }
         }
         
@@ -170,7 +171,7 @@
                                     <td>".$user->user_id."</td>
                                     <td>".$user->user_name."</td>
                                     <td>".$user->user_email."</td>
-                                    <td>".$user->user_image."</td>
+                                    <td><img height='100' width='100' src='".URLROOT."/img/users/".$user->user_image."'></td>
                                     <td><span class='btn fa fa-trash text-danger'></span></td>
                                 </tr>    
                                 ";

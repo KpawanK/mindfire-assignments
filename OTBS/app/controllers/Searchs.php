@@ -20,7 +20,7 @@
                 foreach($searchDetail as $movie){
                     $output .= '
                         <li class="list-group-item">
-                            <a href="#" style="text-decoration:none">'.$movie->movie_name.'</a>              
+                            <a href="'.URLROOT.'/movies/index/'.$movie->movie_id.'" style="text-decoration:none">'.$movie->movie_name.'</a>              
                         </li>
                     ';
                 }
