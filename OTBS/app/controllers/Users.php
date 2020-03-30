@@ -164,10 +164,11 @@
             }
         }
 
-        public function createUserSession($user){
+        public function createUserSession($user){   
             $_SESSION['user_id'] = $user->user_id;
             $_SESSION['user_email'] = $user->user_email;
             $_SESSION['user_name'] = $user->user_name;
+            $_SESSION['user_role'] = $user->user_role;
             redirect('pages/index');
         }   
 

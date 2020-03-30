@@ -12,7 +12,7 @@
         }   
     </style>
     <div class="back-image">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3">
                     <a href="https://www.youtube.com/embed/4QvqHwH_je8">
@@ -40,5 +40,6 @@
             </div>
         </div>
     </div>
+    
     
 <?php include APPROOT . '/views/inc/footer.php';?>

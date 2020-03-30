@@ -1,3 +1,8 @@
+<?php
+    if($_SESSION['user_role'] != "Admin"){
+        redirect(pages);
+    }
+?>
 <?php include APPROOT . '/views/inc/header.php';?>
 <style>
     /* Style for the control nav */
@@ -149,6 +154,10 @@
                         <label for="userImage">Image</label>
                         <input type="number" name="userImage" id="userImage" placeholder="Image" class="form-control">
                     </div>
+                    <div class="form-group">
+                        <label for="userRole">Role</label>
+                        <input type="text" name="userRole" id="userRole" placeholder="User Role" class="form-control">
+                    </div>
                     <div class="text-right">
                         <input type="button" value="Add" class="btn btn-primary modalAddbutton">
                     </div>
@@ -157,12 +166,13 @@
         </div>
     </div>
 </div>
-
+<!-- DIV TO DIPLAY THE CONTENT THE ADMIN WANTS TO SEE -->
 <div id="dynamicContent" class="container-fluid">
         <h1 class="text-center">
             Welcome to Admin
         </h1>
 </div>
+
 
 <script>
     $('ul li').on( 'click', function(){

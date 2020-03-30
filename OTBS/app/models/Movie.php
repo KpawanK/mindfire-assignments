@@ -28,24 +28,6 @@
 
         }
 
-        //get Movie description by name
-        public function getMovieDescriptionByName($name){
-            $this->db->query('SELECT * FROM movies WHERE movie_name = :name ');
-
-            //Bind Values
-            $this->db->bind(':name' , $name);
-
-            //Single row result
-            $row = $this->db->single();
-
-            //Check row
-            if($this->db->rowCount() >0){
-                return $row;
-            } else {
-                return false;
-            }
-
-        }
 
         //get Movie description having name for search bar
         public function searchMovieHaving($name){

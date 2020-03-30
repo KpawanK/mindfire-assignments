@@ -7,6 +7,10 @@
         height: 450px;
         width: 515px;
     }
+    .date-active{
+        background-color: blue;
+        color: #fff;
+    }
 </style>
 <div style="background-color: #212529" class="text-white px-3">
     Movies
@@ -60,79 +64,27 @@
 </div>
 
 <!-- MOVIE DATE SLIDER -->
-<div id="carousel-example-multi" class="carousel slide carousel-multi-item v-2" data-ride="carousel">
-    <!--Controls-->
-    <div class="controls-top">
-        <a class="btn-floating" href="#carousel-example-multi" data-slide="prev"><span class="carousel-control-prev-icon bg-primary"></span></a>
-        <a class="btn-floating" href="#carousel-example-multi" data-slide="next"><span class="carousel-control-next-icon bg-primary"></span></a>
-    </div>
-    <!--/.Controls--> 
-    <!-- INDICATORS -->
-    <div class="carousel-inner v-2" role="listbox">
-        <div class="carousel-item active">
-            <div class="col-12 col-md-4">
-                <div class="card mb-2">
-                    <img class="card-img-top" src="<?php URLROOT;?>/img/casts/Vicky_Kaushal.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title font-weight-bold">Card title</h4>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                        <a class="btn btn-primary btn-md btn-rounded">Button</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="ml-4" id="dateSlider">
+    <ul class="list-unstyled list-inline">
+        <?php $i=0; foreach($data['uniqueDates'] as $key=>$dates):?>
+            <li class='<?php echo ( $i == 0 ) ? "date-active" : ""; ?> list-inline-item btn mt-1' data-date="<?php echo $key ;?>"> 
+                <?php echo $dates[0];?>
+                <br>    
+                <?php echo $dates[1];?>
+            </li>
+        <?php $i++; endforeach;?>
+    </ul>
 </div>
 
 
 <!-- HALL TIMIMGS CARD -->
 
-<div class="card m-3">  
-    <?php if($data['theaterDetails'] == 'false'):?>
-        <div class="text-center">
-            <h3><Strong>No Shows Found!!</Strong></h3>
-        </div>
-    <?php else:
-    // PROCESSING THE HALL DETIALS TO MAKE TIMINGS GROUP TO THEIR HALL NAME
-        $theaterNames=[];
-            foreach($data['theaterDetails'] as $theater){
-                if(!in_array($theater->hall_name,$theaterNames)){
-                    $theaterNames[$theater->hall_name]=[];
-                    $theaterNames[$theater->hall_name]=array( 
-                        'movie_id' => $theater->movie_id,
-                        'hall_id' => $theater->hall_id,
-                        'timing' => array(),
-                    );
-                }
-            }
-            foreach($data['theaterDetails'] as $theater){
-                array_push($theaterNames[$theater->hall_name]['timing'],$theater->timings);
-            }
-        ?>
-        <!-- DISPLAYING THE PRE PROCESSED DATA  -->
-        <div class="container">
-            <?php foreach($theaterNames as $key=>$value) :?>
-                <div class="row">
-                    <div class="col-4 pt-3">
-                        <a href="#" class="text-dark"><strong><?php echo $key;?> </strong></a>
-                    </div>
-                    <div class="col-8 pt-4">
-                        <ul class="list-unstyled list-inline" id="movie-time"> 
-                            <?php foreach($value['timing'] as $temp) : ?>
-                                <li class="list-inline-item">
-                                    <button class="btn btn-light text-success m-1" data-toggle="modal" data-target="#notes" data-movie-id =<?php echo $value['movie_id'] ;?> data-hall-id=<?php echo $value['hall_id'] ;?>>
-                                        <?php echo $temp; ?>
-                                    </button>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-                </div>
-                <hr>
-            <?php endforeach; ?>
-        </div>
-    <?php endif;?>
+<div class="card m-3" id="hall-timings-card">  
+     <h2 class="text-center">
+         <strong>
+            NO SHOWS FOUND!!
+         </strong>
+     </h2>
 </div>
 
 
@@ -172,10 +124,29 @@
 
 
 <script>
+    //SCRIPT FOR RETREIVING THE HALL ID FROM THE DATA ATTTRIBUTE OF CLICKED BUTTON
     var controller_method_path = "<?php echo URLROOT.'/seats/selectSeats/'; ?>";
-    $('#movie-time .btn').click( function(){
+    $(document).on("click","#movie-time .btn", function(){
         var hallId = $(this).attr("data-hall-id");
         $('#policy_accept').attr("href",controller_method_path + hallId );
+    });
+
+    // AJAX CALL FOR THE MOVIE SHOW TIMINGS
+    $("#dateSlider ul li").on('click',function(){
+        $('#dateSlider ul li').removeClass('date-active');
+        $(this).addClass('date-active');
+        date=$(this).attr('data-date');
+        $.ajax({
+            url:URLROOT+'/theaters/selectTimings',
+            method:'post',
+            data:{
+                "date":date,
+                "movieId":'<?php echo $data['movieDetails']->movie_id;?>',
+            },
+            success:function(data){
+                $('#hall-timings-card').html(data);
+            }
+         });
     });
 </script>
 <?php include APPROOT . '/views/inc/footer.php';?>

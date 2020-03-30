@@ -37,7 +37,7 @@
                                     <td>".$movie->movie_name."</td>
                                     <td>".$movie->movie_date."</td>
                                     <td>".$movie->movie_time."</td>
-                                    <td><img height='180' width='150' src='".URLROOT."/img/".$movie->movie_image."'></td>
+                                    <td><img height='100' width='100' src='".URLROOT."/img/".$movie->movie_image."'></td>
                                     <td>".$movie->movie_content."</td>
                                     <td>".$movie->movie_tags."</td>
                                     <td>".$movie->movie_status."</td>
@@ -161,6 +161,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Image</th>
+                                    <th>Role</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -171,7 +172,8 @@
                                     <td>".$user->user_id."</td>
                                     <td>".$user->user_name."</td>
                                     <td>".$user->user_email."</td>
-                                    <td><img height='100' width='100' src='".URLROOT."/img/users/".$user->user_image."'></td>
+                                    <td><img height='50' width='50' src='".URLROOT."/img/users/".$user->user_image."'></td>
+                                    <td>".$user->user_role."</td>
                                     <td><span class='btn fa fa-trash text-danger'></span></td>
                                 </tr>    
                                 ";

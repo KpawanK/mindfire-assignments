@@ -48,7 +48,7 @@
 				<ul class="navbar-nav ml-auto">
 					<?php if(isset($_SESSION['user_id'])) :?>
 						<li class="nav-item">
-							<a href="<?php echo URLROOT;?>/admins" class="nav-link"><?php echo $_SESSION['user_name']=='Admin'?'Admin':'' ;?></a>
+							<a href="<?php echo URLROOT;?>/admins" class="nav-link"><?php echo $_SESSION['user_role']=='Admin'?'Admin':'' ;?></a>
 						</li>
 						<li class="nav-item">
 							<a href="<?php echo URLROOT;?>/pages" class="nav-link">Welcome <?php echo $_SESSION['user_name'];?></a>

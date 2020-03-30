@@ -59,7 +59,7 @@
         //get all User details for admin to view
         public function getAllusers(){
             $this->db->query('SELECT user_id,user_name,user_email,
-                              user_image FROM users');
+                              user_image,user_role FROM users');
             
             //Multi row result
             $rows = $this->db->resultSet();
