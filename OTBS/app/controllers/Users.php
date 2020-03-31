@@ -7,6 +7,7 @@
         public function register(){
             //Check for POST
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                
                 //Process the form
 
                 //Sanitize the POST data
@@ -18,10 +19,13 @@
                     'email' => trim($_POST['email']),
                     'password' => trim($_POST['password']),
                     'confirm_password' => trim($_POST['confirm_password']),
+                    'otp'=>trim($_POST['otp']),
+                    'otp_trigger'=>false,
                     'name_err' => '',
                     'email_err' => '',
                     'password_err' => '',
-                    'confirm_password_err' => ''
+                    'confirm_password_err' => '',
+                    'otp_err'=>'',
                 ];
 
                 //Validate email
@@ -37,7 +41,7 @@
                 //Validate name
                  if(empty($data['name'])){
                     $data['name_err'] = 'Please enter name';
-                }
+                } 
 
                 //Validate Password
                  if(empty($data['password'])){
@@ -57,17 +61,32 @@
 
                 //Make sure errors are empty
                 if(empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err'])  && empty($data['confirm_password_err'])){
-                    //Validated
-                    
-                    //Hash password
-                    $data['password'] = password_hash($data['password'],PASSWORD_DEFAULT);
-
-                    //Register User
-                    if($this->userModel->register($data) && send_mail('Test',98989,$data['email'])){
-                        flash('register_success','You are registered and can log in');
-                        redirect('users/login');
+                    if($data['otp'] == ''){
+                        if(send_mail('Test',98989,$data['email'])){
+                            flash('otp_send','Enter OTP sent to Your registered email ID');
+                            $data['otp_trigger']=true;
+                        } else{
+                            flash('otp_send','Please check the mail ID added');
+                        }
+                        $this->view('users/register',$data);   
                     } else {
-                        die('Something went wrong');
+                        if($data['otp'] == 98989){
+                            //Validated
+                            //Hash password
+                            $data['password'] = password_hash($data['password'],PASSWORD_DEFAULT);
+
+                            //Register User
+                            if($this->userModel->register($data)){
+                                flash('register_success','You are registered and can log in');
+                                redirect('users/login');
+                            } else {
+                                die('Something went wrong');
+                            }
+                        } else {
+                            $data['otp_trigger']=true;
+                            $data['otp_err'] = 'Please enter the OTP correctly';
+                            $this->view('users/register',$data);    
+                        }
                     }
                 } else {
                     //Load view with errors

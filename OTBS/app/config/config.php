@@ -7,6 +7,6 @@
     //App root
     define('APPROOT' , dirname(dirname(__FILE__))) ;
     //URL Root
-    define('URLROOT' , 'http://otbs.com');
+    define('URLROOT' , 'https://otbs.com');
     //Site Name
     define('SITENAME' , 'OTBS');

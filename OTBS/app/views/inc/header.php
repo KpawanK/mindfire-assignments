@@ -16,7 +16,7 @@
     crossorigin="anonymous"></script>
     
     <script>
-        URLROOT = 'http://otbs.com';
+        URLROOT = 'https://otbs.com';
         APPROOT = '/var/www/html/my-assignments/OTBS/app';
     </script>
     

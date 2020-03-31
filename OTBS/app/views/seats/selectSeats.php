@@ -210,14 +210,16 @@
             if(0 === remSeats){
                 $('#payAmount').addClass('d-block');
                 $('#payAmount a').html('Pay Rs.' + toSelect*150);
+                payableAmount = toSelect*150;
             }
             else{
                 $('#payAmount').removeClass('d-block');
             }
         }
     });
-    $('#pay').click(function(){
-        seatsSelected=[];
+    $('#pay').on("click",function(){
+        hallSelected = "<?php echo $data['seatInfo']->hall_name;?>";
+        seatsSelected = [];
         $('.seatMark').each(function(){
             var $this = $(this);
             if($this.hasClass('seatMarkActive')){
@@ -225,6 +227,9 @@
             }
         });
         localStorage.setItem('seatsSelected',seatsSelected);
+        localStorage.setItem('hallSelected',hallSelected);
+        localStorage.setItem('payableAmount',payableAmount);
+        
     });
 </script>
 <?php include APPROOT . '/views/inc/footer.php';?>

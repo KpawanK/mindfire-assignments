@@ -62,7 +62,7 @@
         
         //get Seats Info using hall id
         public function seatsInfo($id){
-            $this->db->query(' SELECT hall_no_rows , hall_no_cols FROM hall WHERE hall_id = :id');
+            $this->db->query(' SELECT hall_name, hall_no_rows , hall_no_cols FROM hall WHERE hall_id = :id');
 
             //Bind Values
             $this->db->bind(':id' , $id);

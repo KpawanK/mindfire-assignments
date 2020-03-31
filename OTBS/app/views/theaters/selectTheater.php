@@ -131,6 +131,14 @@
         $('#policy_accept').attr("href",controller_method_path + hallId );
     });
 
+    //SCRIPT FOR SAVING THE HALL NAME AND MOVIE NAME AND TIMING IN LOCAL STORAGE
+    $('#policy_accept').on("click",function(){
+        movieSelected = '<?php echo $data['movieDetails']->movie_name ;?>';
+        dateSelected = $('.date-active')[0].innerText;
+        localStorage.setItem('movieSelected',movieSelected);
+        localStorage.setItem('dateSelected',dateSelected);
+    });
+
     // AJAX CALL FOR THE MOVIE SHOW TIMINGS
     $("#dateSlider ul li").on('click',function(){
         $('#dateSlider ul li').removeClass('date-active');
