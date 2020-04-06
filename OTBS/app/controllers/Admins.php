@@ -62,7 +62,7 @@
                     }
                 }
             } else if($param == "delete"){
-                echo($param);
+                
             }
         }
         

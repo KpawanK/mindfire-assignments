@@ -1,6 +1,6 @@
 <?php
     if($_SESSION['user_role'] != "Admin"){
-        redirect(pages);
+        redirect('pages');
     }
 ?>
 <?php include APPROOT . '/views/inc/header.php';?>
@@ -17,14 +17,12 @@
         padding-bottom: 15px;
         border-bottom: 2px solid #e67e22;
     }
-
-    
     .active{
         padding-bottom: 11px;
         border-bottom: 2px solid #e67e22;
     }
-
 </style>
+
 <div class="row shadow-sm bg-light sticky-top mb-5" style="height: 40px;">
         <div class="col-9 mt-1 pl-4">
             <ul id="navigationBar" class="control-nav list-unstyled list-inline">
@@ -188,7 +186,7 @@
         $('#add').removeAttr('disabled');
         $('#add').attr('data-target', '#'+method+'Modal');
 
-        // bring the data of current active method using ajax call
+        // bring the data of current active method using ajax call as it will give the updated recoed till time
         $.ajax({
                 url:URLROOT+'/admins/'+method+'/'+param,
                 method:'post',

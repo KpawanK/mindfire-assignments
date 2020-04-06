@@ -3,7 +3,7 @@
     require_once ($_SERVER["DOCUMENT_ROOT"].'/public/PHPMailer/src/Exception.php');
     require_once ($_SERVER["DOCUMENT_ROOT"].'/public/PHPMailer/src/SMTP.php');
 
-    function send_mail($subject,$body,$to){
+    function send_mail($subject,$body,$to,$attachment){
         $mail = new PHPMailer\PHPMailer\PHPMailer();
         $mail->IsSMTP();
         $mail->SMTPDebug = 0;
@@ -14,16 +14,20 @@
         $mail->IsHTML(true);
         $mail->Username = "pawankunu@gmail.com";
         $mail->Password = "p@w@n@6500#";
-        $mail->setfrom( 'noreply@no-reply.com' ,"OTBS");
+        $mail->setFrom( 'noreply@no-reply.com' ,"OTBS");
         $mail->Subject = $subject;
-        $mail->Body = 'You one time verification Code is '.$body;
+        $mail->Body = $body;
         $mail->addaddress($to);
+        if($attachment!=false){
+            $mail->addAttachment($attachment,'Movie Ticket');
+        }
         if(!$mail->Send()) {
            return false;
         } else {
             return true;
         }
     }
+
     
     
     

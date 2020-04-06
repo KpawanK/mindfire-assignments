@@ -7,13 +7,14 @@
         }
 
         //Register User
-        public function register($data){
-            $this->db->query('INSERT INTO users (user_name,user_email,user_password) VALUES (:name , :email , :password)');
+        public function register($data,$randomText){
+            $this->db->query('INSERT INTO users (user_name,user_email,user_password,otp_code) VALUES (:name , :email , :password , :otp)');
 
             //Bind values
             $this->db->bind(':name' , $data['name']);
             $this->db->bind(':email' , $data['email']);
             $this->db->bind(':password' , $data['password']);
+            $this->db->bind(':otp' , $randomText);
 
             //Execute 
             if($this->db->execute()){
@@ -32,12 +33,47 @@
             
             $hashed_password = $row->user_password;
             if(password_verify($password , $hashed_password)){
-                return $row;
+                if($row->user_status==1){
+                    return $row;
+                } else {
+                    return 'otpNotVerified';
+                }
             } else {
                 return false;
             }
         }
         
+        //Check the otp
+        public function checkOTP($data){
+            $this->db->query('SELECT otp_code FROM users WHERE user_email = :email');
+            $this->db->bind(':email',$data['email']);
+
+            $row = $this->db->single();
+            
+            $otp = $row->otp_code;
+            if($otp == $data['otp']){
+                return true;
+            } else {
+                return false;
+            }
+        }
+      
+        //Update the user status
+        public function updateUserStatus($mail){
+            $this->db->query('UPDATE users SET user_status = :status WHERE user_email = :email');
+            
+            //Bind
+            $this->db->bind(':email',$mail);
+            $this->db->bind(':status' , 1);
+
+            //Execute 
+            if($this->db->execute()){
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         //Find user by email
         public function findUserByEmail($email){
             $this->db->query('SELECT * FROM users WHERE user_email = :email');

@@ -38,9 +38,9 @@
         <h2 class="mt-3"><strong>Movies</strong></h2>
         <div class="row ml-2">
             <?php foreach($data['movies'] as $movie) :?>
-                <div class="card mr-5 mb-5 " style="width: 18rem;">
-                    <a href="<?php echo URLROOT .'/movies/index/'. $movie->movie_id ;?>" style="color: black;">
-                        <img src="<?php echo URLROOT .'/img/'.$movie->movie_image?>" class="card-img-top" alt="..." style="height:286px;width:286px">
+                <div class="card mb-4 mr-4">
+                    <a href="<?php echo URLROOT .'/movies/index/'. $movie->movie_id ;?>">
+                        <img src="<?php echo URLROOT .'/img/'.$movie->movie_image?>" alt="Movie Image" class="card-img-top img-fluid" style="height:300px;width:250px;">
                         <div class="card-body">
                             <p class="card-text">
                                 <i class="fa fa-heart" style="color: red;"></i>
@@ -53,4 +53,32 @@
         </div>
     </div>
 
+    <!-- <script>
+       $(document).ready(function(){
+            var res = document.cookie;
+            var multiple = res.split(";");
+            for(var i = 0; i < multiple.length; i++) {
+                var key = multiple[i].split("=");
+                document.cookie = key[0]+" =; expires = Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
+            }
+       });
+    </script> -->
+    <script>    
+        // Destroy all the cookies set
+        $(document).ready(function(){
+            document.cookie = "hallSelected=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "movieSelected=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "movie_timing_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "numberOfSeats=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "payableAmount=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "seatsSelected=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "time=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "movieImage=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        });
+    </script>
 <?php include APPROOT . '/views/inc/footer.php';?>
+
+
+
+
+

@@ -5,6 +5,7 @@
             $this->movieModel = $this->model('Movie');
         }
 
+        //function to get the carousel images and all movie details for the landing page of the site
         public function index(){
             $carousels = $this->pageModel->getCarousel();
             $movies = $this->movieModel->getMovies();

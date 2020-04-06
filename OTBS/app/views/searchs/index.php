@@ -13,7 +13,7 @@
 </div>
 
 <script>
-    URLROOT = 'http://otbs.com';
+    // Ajax call for every key up stroke for searching movies having those words
     $("#searchMovie").keyup(function(){
         var txt = $('#searchMovie').val();
         console.log(txt);

@@ -4,11 +4,13 @@
             $this->movieModel = $this->model('Movie');
         }
         
+        //landing page for the search page
         public function index(){
             $data=[];
             $this->view('searchs/index' , $data);   
         } 
 
+        //Ajax call function which returns the movie details for the current entered word(s) as response
         public function searchMovie(){
             //Process the data
             $name = $_POST['search'];

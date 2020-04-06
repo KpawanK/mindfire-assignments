@@ -35,7 +35,8 @@
 
         //get Timimg details for the particluar date selected for the movie
         public function selectTimings($id,$date){
-            $this->db->query('  SELECT movies.movie_id,movies.movie_name,hall.hall_id,hall.hall_name,movie_timings.movie_date_time 
+            $this->db->query('  SELECT movies.movie_id,movie_timings.id,movies.movie_name,hall.hall_id,hall.hall_name,
+                                movie_timings.movie_date_time 
                                 AS date_time ,TIME_FORMAT(time(movie_timings.movie_date_time),"%h:%i %p") AS timings ,
                                 DATE_FORMAT(movie_timings.movie_date_time,"%Y-%m-%d") AS CD,
                                 DATE_FORMAT(movie_timings.movie_date_time,"%d") AS D,

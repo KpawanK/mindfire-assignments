@@ -211,7 +211,7 @@
             $age = document.getElementById("age");
             $gender = document.getElementById("gender");
             nameReg = /^[a-zA-Z ]{3,}$/;
-            emailReg = /[a-zA-Z]{3,}[a-zA-Z0-9]*@[a-zA-Z]{3,}\.[a-zA-Z]{2,}/;
+            emailReg = /[a-zA-Z]{3,}[a-zA-Z0-9]*@[a-zA-Z]{5,}\.[a-zA-Z]{2,}/;
             numberReg = /^[0-9]{3}[-][0-9]{3}[-][0-9]{4}$/;
             
             if ($name.value === '' || $email.value === '' || $number.value === '' || $age.value === '' || undefined === $("input[name='gender']:checked"). val() || '' === $('.states').val()) {

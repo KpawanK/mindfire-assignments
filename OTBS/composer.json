@@ -1,0 +1,9 @@
+{
+    "require": {
+        "stripe/stripe-php": "^7.27",
+        "mpdf/mpdf": "^8.0",
+        "swiftmailer/swiftmailer": "^6.2",
+        "endroid/qrcode": "^3.7",
+        "endroid/qr-code": "^3.7"
+    }
+}

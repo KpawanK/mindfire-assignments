@@ -36,8 +36,8 @@
     .seatMarkActive{
         background-color: deepskyblue;
     }
-    /* modal style style sheet */
 
+    /* modal style style sheet */
     .modal-content{
         height: 450px;
         width: 515px;
@@ -51,6 +51,11 @@
     img.d-block.img-fluid.imgh {
         height: 125px !important;
         width: auto;
+    }
+    .booked{
+        pointer-events: none;
+        background-color: grey;
+        color: white;
     }
 </style>
 
@@ -70,7 +75,7 @@
         for($row=0 ; $row < $data['seatInfo']->hall_no_rows ; $row++){
             echo "<div class='seatRowName d-inline-block'>".chr($r+$row)."</div> ";
             for($col=0 ; $col < $data['seatInfo']->hall_no_cols ; $col++):?>
-                    <div class="d-inline-block seat boundary text-muted seatMark" id="<?php echo $count++;?>" rowSeatNo="<?php echo chr($r+$row).($col+1);?>">
+                    <div class="d-inline-block seat boundary <?php echo in_array(chr($r+$row).($col+1) , $data['bookedSeatsInfo'])? 'booked':'text-muted' ?>   " id="<?php echo $count++;?>" rowSeatNo="<?php echo chr($r+$row).($col+1);?>">
                         <span>
                             <?php echo $seat+1;?>
                         </span>
@@ -187,7 +192,7 @@
 
     // SEAT SECTION
     // Mark Seats by selecting seats with seatMark class and adding Active class to it
-    $('.seatMark').on('click' , function(){
+    $('.seat').on('click' , function(){
         if(0 === remSeats){
             remSeats = toSelect;
             $('.seatMarkActive span').removeClass('text-white');
@@ -217,19 +222,21 @@
             }
         }
     });
+
+    // On pay keep all the required details in the cookies storage
     $('#pay').on("click",function(){
         hallSelected = "<?php echo $data['seatInfo']->hall_name;?>";
         seatsSelected = [];
-        $('.seatMark').each(function(){
+        $('.seat').each(function(){
             var $this = $(this);
             if($this.hasClass('seatMarkActive')){
-                seatsSelected.push($this.attr("rowSeatNo"));
+                numberOfSeats = seatsSelected.push($this.attr("rowSeatNo"));
             }
         });
-        localStorage.setItem('seatsSelected',seatsSelected);
-        localStorage.setItem('hallSelected',hallSelected);
-        localStorage.setItem('payableAmount',payableAmount);
-        
+        document.cookie = "numberOfSeats="+numberOfSeats+";path=/ "; 
+        document.cookie = "seatsSelected="+seatsSelected+";path=/ "; 
+        document.cookie = "payableAmount="+payableAmount+";path=/ "; 
+        document.cookie = "hallSelected="+hallSelected+";path=/ ";        
     });
 </script>
 <?php include APPROOT . '/views/inc/footer.php';?>

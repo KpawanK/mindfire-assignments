@@ -19,7 +19,7 @@
 <!-- MOVIE DESCRIPTION SECTION -->
 <div class="bg-dark">
     <div class="row px-3">
-        <div class="col-md-6">
+        <div class="col-6">
             <h1 class="display-5 text-white pt-4"><?php echo $data['movieDetails']->movie_name ;?></h1>
             <p>
                 <i class="fa fa-calendar text-white"><?php echo ' ' . $data['movieDetails']->movie_date;?></i>
@@ -28,37 +28,21 @@
         </div>
 
         <!-- CAST SECTION -->
-        <div class="col-md-6">
-            <div class="row px-3">
-                <div class="dir_info mt-4 ml-auto">
-                    <span style="font-size: 10px;" class="text-white">DIRECTOR</span>
-                    <br>
-                        <div class="row ml-1 mr-2">
-                            <span class="m-2">
-                                <div>
-                                <img style="border-radius:50%;height:40px;" alt="Dan Scanlon" title="Dan Scanlon" data-error="//in.bmscdn.com/webin/profile/user.jpg" data-src="//in.bmscdn.com/iedb/artist/images/website/poster/large/dan-scanlon-36180-03-03-2020-03-12-59.jpg" src="//in.bmscdn.com/iedb/artist/images/website/poster/large/dan-scanlon-36180-03-03-2020-03-12-59.jpg"></a>
-                                </div>
-                                <span style="font-size: 10px;" class="text-white">Name</span>
-                            </span>
-
-                        </div>
-                </div>
-
-                <div class="cast_info mt-4">
-                    <span style="font-size:10px;" class="text-white">CAST & CREW</span>
-                    <br>
-                    <div class="row ml-1">
-                        <span class="m-2">
-                            <div>
-                            <img style="border-radius:50%;height:40px;" alt="Dan Scanlon" title="Dan Scanlon" data-error="//in.bmscdn.com/webin/profile/user.jpg" data-src="//in.bmscdn.com/iedb/artist/images/website/poster/large/dan-scanlon-36180-03-03-2020-03-12-59.jpg" src="//in.bmscdn.com/iedb/artist/images/website/poster/large/dan-scanlon-36180-03-03-2020-03-12-59.jpg"></a>
-
-                            </div>
-                            
-                            <span style="font-size: 10px;" class="text-white">Name</span>
+        <div class="col-6">
+            <div class="m-2 text-right">
+                <ul class="list-inline list-unstyled"></ul>
+                <?php foreach($data['castDetails'] as $cast):?>
+                    <li class="list-inline-item">
+                        <span>
+                            <img src="<?php echo URLROOT . '/img/cast/'.$cast->cast_image;?>" alt="castImage" style="height: 40px;width:40px;border-radius: 50%;">
+                            <br>
+                            <p class="text-center mt-2" style="color:white;font-size: 13px;">
+                                <?php echo $cast->cast_role==0 ? 'Director' : 'Actor';?>
+                            </p>
                         </span>
-                    </div>
-                </div>
-            </div>            
+                    </li>
+                <?php endforeach;?>
+            </div>           
         </div>
     </div>
 </div>
@@ -124,22 +108,43 @@
 
 
 <script>
-    //SCRIPT FOR RETREIVING THE HALL ID FROM THE DATA ATTTRIBUTE OF CLICKED BUTTON
+    //SCRIPT FOR RETREIVING THE HALL ID FROM THE DATA ATTTRIBUTE OF CLICKED BUTTON AND ADD IT TO THE ACCEPT BUTTON
     var controller_method_path = "<?php echo URLROOT.'/seats/selectSeats/'; ?>";
     $(document).on("click","#movie-time .btn", function(){
         var hallId = $(this).attr("data-hall-id");
         $('#policy_accept').attr("href",controller_method_path + hallId );
     });
 
-    //SCRIPT FOR SAVING THE HALL NAME AND MOVIE NAME AND TIMING IN LOCAL STORAGE
+    //SCRIPT FOR SAVING THE HALL NAME AND MOVIE NAME AND TIMING IN COOKIES
     $('#policy_accept').on("click",function(){
         movieSelected = '<?php echo $data['movieDetails']->movie_name ;?>';
         dateSelected = $('.date-active')[0].innerText;
-        localStorage.setItem('movieSelected',movieSelected);
-        localStorage.setItem('dateSelected',dateSelected);
+        document.cookie = "movieSelected="+movieSelected+";path=/ ";
+        document.cookie = "dateSelected="+dateSelected+";path=/ "; 
+        
     });
 
-    // AJAX CALL FOR THE MOVIE SHOW TIMINGS
+    //ON LOAD PAGE CALL A AJAX CALL FOR THE DEFAULT ACTIVE DATE SLIDER
+    $(window).on('load', function(){ 
+        date=$('.date-active').attr('data-date');
+        $.ajax({
+            url:URLROOT+'/theaters/selectTimings',
+            method:'post',
+            data:{
+                "date":date,
+                "movieId":'<?php echo $data['movieDetails']->movie_id;?>',
+            },
+            success:function(data){
+                if(data){
+                    $('#hall-timings-card').html(data);
+                }
+                
+            }
+         });
+        
+    });
+
+    // AJAX CALL FOR THE MOVIE SHOW TIMINGS WHEN CLICKED ON ANY DATE
     $("#dateSlider ul li").on('click',function(){
         $('#dateSlider ul li').removeClass('date-active');
         $(this).addClass('date-active');
@@ -152,9 +157,19 @@
                 "movieId":'<?php echo $data['movieDetails']->movie_id;?>',
             },
             success:function(data){
-                $('#hall-timings-card').html(data);
+                if(data){
+                    $('#hall-timings-card').html(data);
+                }
             }
          });
+    });
+
+    //When the time is selected get the show id and set in cookies
+    $(document).on("click", '#movie-time li button',function(){
+        var time = $(this).text();
+        var movie_timing_id = $(this).attr('data-movie-timing-id');
+        document.cookie = "time="+time+";path=/ ";  
+        document.cookie = "movie_timing_id="+movie_timing_id+";path=/ ";  
     });
 </script>
 <?php include APPROOT . '/views/inc/footer.php';?>

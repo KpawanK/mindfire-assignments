@@ -46,18 +46,22 @@
             // PROCESSING THE HALL DETIALS TO MAKE TIMINGS GROUP TO THEIR HALL NAME
             $theaterNames=[];
             foreach($theaterDetails as $theater){
+               
                 if(!in_array($theater->hall_name,$theaterNames)){
                     $theaterNames[$theater->hall_name]=[];
                     $theaterNames[$theater->hall_name]=array( 
-                        'movie_id' => $theater->movie_id,
                         'hall_id' => $theater->hall_id,
                         'timing' => array(),
+                        'timingID' => array(),
                     );
                 }
             }
+            
             foreach($theaterDetails as $theater){
                 array_push($theaterNames[$theater->hall_name]['timing'],$theater->timings);
+                array_push($theaterNames[$theater->hall_name]['timingID'],$theater->id);
             }
+           
             foreach($theaterNames as $key=>$value){
                 $output .= '<div class="row">';
                     $output .= '<div class="col-4 pt-3">';
@@ -65,9 +69,10 @@
                     </div>
                     <div class="col-8 pt-4">
                         <ul class="list-unstyled list-inline" id="movie-time"> ';
-                            foreach($value['timing'] as $temp){
+                            foreach(array_combine($value['timing'],$value['timingID']) as $temp => $timeID){
                                 $output.= '<li class="list-inline-item">
-                                    <button class="btn btn-light text-success m-1" data-toggle="modal" data-target="#notes" data-movie-id ="'.$value['movie_id'].'" data-hall-id="'.$value['hall_id'].'">'.
+                                    <button class="btn btn-light text-success m-1" data-toggle="modal" data-target="#notes" 
+                                    data-movie-timing-id ="'.$timeID.'" data-hall-id="'.$value['hall_id'].'">'.
                                         $temp. 
                                     '</button>
                                 </li>';

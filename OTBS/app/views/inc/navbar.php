@@ -33,11 +33,25 @@
 			<div class="col-6">
 				<a href="<?php echo URLROOT;?>" class="float-right"><i class="fa fa-times text-white"></i></a>
 			</div>
-
+		
+		<!-- Navbar in Payment Making site -->
+		<?php elseif(isset($payment)) :?>
+			<div class="col-6">
+				<a href="javascript:history.go(-1)"><i class="fa fa-backward text-white"></i></a>
+			</div>
+			<div class="col-6">
+				<a href="javascript:history.go(-1)" class="float-right"><i class="fa fa-times text-white"></i></a>
+			</div>
+		
+		<!-- Navbar in Payment Success Page -->
+		<?php elseif(isset($paymentSuccess)) :?>
+			
 			
 		<!-- Navbar look in all places  -->
 		<?php else :?>
-			<a class="navbar-brand" href="<?php echo URLROOT;?>"><?php echo SITENAME;?></a>
+			<a class="navbar-brand" href="<?php echo URLROOT;?>">
+				<i class="fa fa-ticket text-danger" aria-hidden="true"></i><?php echo ' '.SITENAME;?>
+			</a>
   			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     		<span class="navbar-toggler-icon"></span>
   			</button>
