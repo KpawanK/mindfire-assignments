@@ -39,8 +39,9 @@
                 "customer" => $customer->id
             ));
 
+
             //Redirect to success page if charge object is returned
-            if($charge){
+            if($charge->status == "succeeded"){
                //Transaction Data
                 $transactionData=[
                     "id" => $charge->id,
@@ -138,7 +139,12 @@
            $to = $_SESSION['user_email'];
            $attachment = $pdfPath;
            $result = send_mail($subject,$body,$to,$attachment);
-           redirect('pages');
+           if($result){
+                redirect('pages');
+           } else {
+               die('Something went ! Failed to send mail');
+           }
+           
            
         }
     }
