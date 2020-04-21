@@ -13,6 +13,15 @@ class UserController extends Controller
     }
 
     public function store(Request $request){
+        // validation of data using validate method which takes the request and array of fields which need to be validated
+        $this->validate($request,[
+            'address'  => 'required',
+            'bio' => 'required|min:20',
+            'experience' => 'required|min:20',
+            // 'phone_number' => 'required|min:10|numeric',
+            'phone_number' => 'required|regex:/[0-9]{10}/',
+        ]);
+
         //$request->get('address') and request('address') are both same
         //to get information of current logged in user is using auth 
         $user_id = auth()->user()->id;
@@ -20,11 +29,16 @@ class UserController extends Controller
             'address' => request('address'),
             'experience' => request('experience'),
             'bio' => request('bio'),
+            'phone_number' => request('phone_number'),
         ]);
         return redirect()->back()->with('message','Profile successfully Updated!');
     }
 
     public function coverletter(Request $request){
+        // validation
+        $this->validate($request,[
+            'cover_letter' => 'required|mimes:pdf,doc,docx|max:2000',
+        ]);
         $user_id = auth()->user()->id;
         // store is used to store a file inside storage/app/public 
         $cover = $request->file('cover_letter')->store('public/files');
@@ -35,6 +49,10 @@ class UserController extends Controller
     }
 
     public function resume(Request $request){
+        // validation
+        $this->validate($request,[
+            'resume' => 'required|mimes:pdf,doc,docx|max:2000',
+        ]);
         $user_id = auth()->user()->id;
         // store is used to store a file inside storage/app/public 
         $resume = $request->file('resume')->store('public/files');
@@ -45,6 +63,10 @@ class UserController extends Controller
     }
 
     public function avatar(Request $request){
+        // validation
+        $this->validate($request,[
+            'avatar' => 'required|mimes:png,jpg,jpeg|max:2000',
+        ]);
         $user_id = auth()->user()->id;
         if($request->hasfile('avatar')){
             $file = $request->file('avatar');

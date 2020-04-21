@@ -44,18 +44,50 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
+                            
+                            {{-- for employer register --}}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('employer.register') }}">{{ __('Employer Register') }}</a>
+                            </li>
+
+                            {{-- for job seeker registeration --}}
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Job Seeker Register') }}</a>
                                 </li>
                             @endif
                         @else
+                            <li>
+                                <a href="{{route('job.create')}}">
+                                    <button class="btn btn-secondary">
+                                        Post a Job
+                                    </button>
+                                </a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    @if(Auth::user()->user_type == 'employer')
+                                        {{Auth::user()->company->cname}}
+                                    @else
+                                        {{ Auth::user()->name }} 
+                                    @endif
+                                    <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if(Auth::user()->user_type == 'employer')
+                                        <a class="dropdown-item" href="{{ route('company.view') }}">
+                                            {{ __('Company') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('my.job') }}">
+                                            My Jobs
+                                        </a>
+                                    @else
+                                        {{-- user/profile is also ok and if u want u can create a named route and write route  --}}
+                                        <a class="dropdown-item" href="user/profile">
+                                            {{ __('Profile') }}
+                                        </a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
