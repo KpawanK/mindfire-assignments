@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
+    //middleware controller
+    public function __construct(){
+        $this->middleware('employer',['except'=>array('index')]);
+    }
+
     //the $name parameter is route model binding the advantage is no need to find the company detail we can get it directly by skipping one line
     public function index($id , Company $company){
         return view('company.index',compact('company'));   

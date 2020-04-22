@@ -17,7 +17,7 @@
                     <tr>
                         <td>
                             {{-- if you use asset() it targers to the public folder --}}
-                            <img src="{{asset('avatar/serwman1.jpg')}}" width="80" alt="avatar image">
+                            <img src="{{asset('uploads/logo')}}/{{$job->company->logo}}" width="80" alt="avatar image">
                         </td>
                         <td>
                             Position:{{$job->position}}
@@ -41,6 +41,31 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
+    <div>
+        <a href="{{route('alljobs')}}">
+            <button class="btn btn-success btn-lg" style="width:100%;">
+                Browse all jobs
+            </button>
+        </a>
+    </div>
+    <br><br>
+    <h1>Featured Companies</h1>
+</div>
+<div class="container">
+    <div class="row">
+    @foreach ( $companies as $company)
+        <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+                <img src="{{asset('uploads/logo')}}/{{$company->logo}}" width="80" alt="avatar image">
+                <div class="card-body">
+                    <h5 class="card-title">{{$company->cname}}</h5>
+                    <p class="card-text">{{str_limit($company->description,20)}}</p>
+                    <a href="{{route('company.index',[$company->id,$company->slug])}}" class="btn btn-primary">Visit Company</a>
+                </div>
+              </div>
+        </div>
+    @endforeach
     </div>
 </div>
 @endsection

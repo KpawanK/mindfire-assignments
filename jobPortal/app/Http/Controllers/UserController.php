@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    //
+    //middleware
+    public function __construct(){
+        $this->middleware('seeker');
+    }
     public function index(){
         return view('profile.index');
     }

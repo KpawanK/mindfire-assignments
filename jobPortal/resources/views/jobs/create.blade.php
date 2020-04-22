@@ -93,7 +93,7 @@
     
                         <div class="form-group">
                             <label for="lastdate">Last Date:</label>
-                            <input type="date" name="last_date" class="form-control @error('last_date') is-invalid @enderror" value="{{ old('last_date') }}">
+                            <input type="text" name="last_date" id="datepicker" class="form-control @error('last_date') is-invalid @enderror" value="{{ old('last_date') }}">
 
                             @error('last_date')
                                 <span class="invalid-feedback" role="alert">
@@ -109,7 +109,7 @@
                             <div class="alert alert-success">
                                 {{Session::get('message')}}
                             </div>
-                            @endif
+                        @endif
                     </form>
                 </div>
             </div>

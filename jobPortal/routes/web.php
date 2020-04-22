@@ -17,6 +17,8 @@
 
 //we will go through controller and get required data from database and then redirect to the view page
 
+use App\Http\Controllers\JobController;
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -28,6 +30,8 @@ Route::post('/jobs/store','JobController@store')->name('job.store');
 Route::get('/jobs/{id}/edit','JobController@edit')->name('job.edit');
 Route::post('/jobs/{id}/edit','JobController@update')->name('job.update');
 Route::get('/jobs/my-job','JobController@myjob')->name('my.job');
+Route::get('/jobs/alljobs','JobController@allJobs')->name('alljobs');//display all jobs
+Route::get('/jobs/applications','JobController@applicant')->name('applicant');
 
 Route::get('/jobs/{id}/{job}','JobController@show')->name('jobs.show');
 
@@ -48,3 +52,4 @@ Route::post('user/resume','UserController@resume')->name('resume');
 //Employer view
 Route::view('employer/register','auth.employer-register')->name('employer.register');
 Route::post('employer/register','EmployerRegisterController@employerRegister')->name('emp.register');
+Route::post('/applications/{id}','JobController@apply')->name('apply');//route for applying jobs

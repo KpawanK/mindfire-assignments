@@ -23,4 +23,14 @@ class Job extends Model
     public function company(){
         return $this->belongsTo('App\Company');
     }
+
+    //Relationship for users
+    public function users(){
+        return $this->belongsToMany(User::class)->withTimeStamps();
+    }
+    
+    //helper function to check the user is already applied for the particular job or not 
+    public function checkApplication(){
+        return \DB::table('job_user')->where('user_id',auth()->user()->id)->where('job_id',$this->id)->exists();
+    }
 }

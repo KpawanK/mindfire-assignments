@@ -41,10 +41,12 @@
                                     </td>
                                     <td>
                                         <a href="{{route('jobs.show',[$job->id,$job->slug])}}">
-                                            <button class="btn btn-success btn-sm">Apply</button>
+                                            <button class="btn btn-success p-2">Read</button>
                                         </a>
+                                        <br>
+                                        <br>
                                         <a href="{{route('job.edit',[$job->id])}}">
-                                            <button class="btn btn-dark">Edit</button>
+                                            <button class="btn btn-dark ">Edit</button>
                                         </a>
                                     </td>
                                 </tr>

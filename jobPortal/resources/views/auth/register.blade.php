@@ -50,7 +50,7 @@
                             <label for="dob" class="col-md-4 col-form-label text-md-right">{{ __('Date Of Birth') }}</label>
 
                             <div class="col-md-6">
-                                <input id="dob" type="date" class="form-control @error('dob') is-invalid @enderror" name="dob" value="{{ old('dob') }}" required>
+                                <input type="text" id="datepicker" class="form-control @error('dob') is-invalid @enderror" name="dob" value="{{ old('dob') }}" required>
 
                                 @error('dob')
                                     <span class="invalid-feedback" role="alert">
