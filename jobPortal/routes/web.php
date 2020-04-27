@@ -17,9 +17,13 @@
 
 //we will go through controller and get required data from database and then redirect to the view page
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 
-Auth::routes();
+//Auth::routes();
+//for email verification
+Auth::routes(['verify'=>true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -43,7 +47,7 @@ Route::post('company/coverphoto','CompanyController@coverPhoto')->name('cover.ph
 Route::post('company/logo','CompanyController@companyLogo')->name('company.logo');
 
 //user profile
-Route::get('user/profile','UserController@index');
+Route::get('user/profile','UserController@index')->name('user.profile');
 Route::post('user/profile/create','UserController@store')->name('profile.create');
 Route::post('user/avatar','UserController@avatar')->name('avatar');
 Route::post('user/coverletter','UserController@coverletter')->name('cover.letter');
@@ -53,3 +57,33 @@ Route::post('user/resume','UserController@resume')->name('resume');
 Route::view('employer/register','auth.employer-register')->name('employer.register');
 Route::post('employer/register','EmployerRegisterController@employerRegister')->name('emp.register');
 Route::post('/applications/{id}','JobController@apply')->name('apply');//route for applying jobs
+
+//save and unsave jobs
+Route::post('/save/{id}','FavouriteController@saveJob');
+Route::post('/unsave/{id}','FavouriteController@unSaveJob');
+
+
+//search
+Route::get('/jobs/search','JobController@searchJobs');
+
+//category
+Route::get('/category/{id}','CategoryController@index')->name('category.index');   
+
+//company for thr link present in the nav to view all companies
+Route::get('/companies','CompanyController@company')->name('company');   
+
+//email
+Route::post('/job/mail','EmailController@send')->name('mail');
+
+//admin
+Route::get('/dashboard','DashboardController@index')->middleware('admin');
+Route::get('/dashboard/create','DashboardController@create')->middleware('admin');  
+Route::post('/dashboard/create','DashboardController@store')->name('post.store')->middleware('admin');  
+Route::post('/dashboard/destroy','DashboardController@destroy')->name('post.delete')->middleware('admin'); 
+Route::get('/dashboard/{id}/edit','DashboardController@edit')->name('post.edit')->middleware('admin');   
+Route::post('/dashboard/{id}/update','DashboardController@update')->name('post.update')->middleware('admin');   
+//admin trash restore routes
+Route::get('/dashboard/trash','DashboardController@trash')->middleware('admin');
+Route::get('/dashboard/{id}/trash','DashboardController@restore')->name('post.restore')->middleware('admin');
+//toggle the status 
+Route::get('/dashboard/{id}/toggle','DashboardController@toggle')->name('post.toggle')->middleware('admin');

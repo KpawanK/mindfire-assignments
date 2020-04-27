@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     //middleware
     public function __construct(){
-        $this->middleware('seeker');
+        $this->middleware(['seeker','verified']);
     }
     public function index(){
         return view('profile.index');

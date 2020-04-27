@@ -95,11 +95,16 @@
                                         <a class="dropdown-item" href="{{ route('applicant') }}">
                                             Applicants
                                         </a>
-                                    @else
+                                    @elseif(Auth::user()->user_type == 'seeker')
                                         {{-- user/profile is also ok and if u want u can create a named route and write route  --}}
-                                        <a class="dropdown-item" href="user/profile">
+                                        <a class="dropdown-item" href="{{route('user.profile')}}">
                                             {{ __('Profile') }}
                                         </a>
+                                        <a class="dropdown-item" href="{{route('home')}}">
+                                            {{ __('Saved jobs') }}
+                                        </a>
+                                    @else 
+                                        
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

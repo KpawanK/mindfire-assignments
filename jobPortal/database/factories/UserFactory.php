@@ -55,10 +55,15 @@ $factory->define(App\Job::class, function (Faker $faker) {
         'position' => $faker->jobTitle,
         'address' => $faker->address,
         'category_id' => rand(1,5),
-        'type' => 'fulltime',//for timebeing full time
+        'type' =>  $faker->randomElement(['fulltime','parttime','casual']),
         'status' => rand(0,1),//0->pending and 1->live
         'description' => $faker->paragraph(rand(2,10)),
         'roles' => $faker->text,
-        'last_date' => $faker->DateTime
+        'last_date' => $faker->DateTime,
+        'number_of_vacancy' => rand(1,10),
+        'experience' => rand(1,10),
+        'gender' => $faker->randomElement(['male','female']),
+        'salary' => rand(10000,50000),
+
     ];
 });

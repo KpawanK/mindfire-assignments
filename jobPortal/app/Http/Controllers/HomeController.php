@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+
 
 class HomeController extends Controller
 {
@@ -13,7 +15,9 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
+        // for email verification
+        $this->middleware(['auth','verified']);
     }
 
     /**
@@ -23,6 +27,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if(auth::user()->user_type=='employer'){
+            return redirect()->to('/company/create');
+        }
+
+        $adminRole = Auth::user()->roles()->pluck('name');
+        if($adminRole->contains('admin')){
+            return redirect('/dashboard');
+        }
+
+        $jobs = Auth::user()->favourites;
+        return view('home',compact('jobs'));
     }
 }

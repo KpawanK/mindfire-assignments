@@ -9,12 +9,18 @@ class CompanyController extends Controller
 {
     //middleware controller
     public function __construct(){
-        $this->middleware('employer',['except'=>array('index')]);
+        $this->middleware(['employer','verified'],['except'=>array('index','company')]);
     }
 
     //the $name parameter is route model binding the advantage is no need to find the company detail we can get it directly by skipping one line
     public function index($id , Company $company){
         return view('company.index',compact('company'));   
+    }
+
+    //to view all companies
+    public function company(){
+        $companies = Company::paginate(10);
+        return view('company.company',compact('companies'));
     }
 
     public function create(){
