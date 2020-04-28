@@ -7,7 +7,7 @@
                     <h2></h2> 
                 </div>
                 @if(empty($company->cover_photo))
-                    <img src="{{asset('cover/520a34e3500f4_thumb900.jpg')}}" style="width:100%;">
+                    <img src="{{asset('cover/tumblr-image-sizes-banner.png')}}" style="width:100%;">
                 @else
                     <img src="{{asset('uploads/coverphoto')}}/{{$company->cover_photo}}" style="width: 100%;">
                 @endif

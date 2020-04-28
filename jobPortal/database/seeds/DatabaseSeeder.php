@@ -15,11 +15,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         //to avoid seeding again of category we used truncate
-        Category::truncate();
+        //Category::truncate();
         // $this->call(UsersTableSeeder::class);
         factory('App\User',20)->create();//create 20 users
-        factory('App\Company',20)->create();//create 20 companies
-        factory('App\Job',20)->create();//create 20 jobs
+        factory('App\Company',30)->create();//create 30 companies
+        factory('App\Job',40)->create();//create 40 jobs
 
         $categories = [
             'Technology',

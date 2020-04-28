@@ -10,13 +10,12 @@
 
     <div class="site-section bg-light">
       <div class="container">
+          @if(Session::has('message'))
+                <div class="alert alert-success">
+                  {{Session::get('message')}}
+              </div>
+          @endif
         <div class="row">
-       @if(Session::has('message'))
-                 <div class="alert alert-success">
-                    {{Session::get('message')}}
-                </div>
-            @endif
-
           <div class="col-md-12 col-lg-8 mb-5">
           
             <form method="POST" action="{{ route('emp.register') }}" class="p-5 bg-white">

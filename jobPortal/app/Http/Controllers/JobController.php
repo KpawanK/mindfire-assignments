@@ -9,6 +9,7 @@ use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\JobPostRequest;//this contains the validation rules for the job form if we follow this method of validation the pass jobpostrequest as a parameter inside store method
+use App\Testimonial;
 
 class JobController extends Controller
 {
@@ -21,11 +22,17 @@ class JobController extends Controller
     public function index(){
         //posts by admin which need to be shown in the home page in blog post section
         $posts = Post::where('status',1)->get();
+
+        //testimonials by admin which need to be shown in the home page in testimonials post section
+        $testimonial = Testimonial::orderBy('id','DESC')->first();
+
         //$jobs = Job::all()->take(10);//fetches randomly 10 records
         $jobs = Job::latest()->limit(10)->where('status',1)->get();//fetches latest 10 records
+
         $categories = Category::with('jobs')->get();//to display categories  and count of jobs in each
+
         $companies = Company::get()->random(12);
-        return view('welcome',compact('jobs','companies','categories','posts'));
+        return view('welcome',compact('jobs','companies','categories','posts','testimonial'));
     }
 
     //will responsible once u click a job then it will show all the details regarding jobs 
@@ -125,7 +132,7 @@ class JobController extends Controller
     }
 
     public function applicant(){
-        //it checks wether the joib has users or not if there then it fetched only that data otherwise it wont fetch any data
+        //it checks wether the job has users or not if there then it fetched only that data otherwise it wont fetch any data
         $applicants = Job::has('users')->where('user_id',auth()->user()->id)->get();
         return view('jobs.applicants',compact('applicants'));
     }

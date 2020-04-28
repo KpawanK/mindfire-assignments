@@ -38,7 +38,7 @@ $factory->define(App\Company::class, function (Faker $faker) {
         'address' => $faker->address,
         'phone' => $faker->phoneNumber,
         'website' => $faker->domainName,
-        'logo' =>'serwman1.jpg',
+        'logo' =>'man.jpg',
         'cover_photo' =>'tumblr-image-sizes-banner.png',
         'slogan' =>'learn-earn and grow',
         'description' => $faker->paragraph(rand(2,10))//it gives 2 to 10 radomly paragraphs

@@ -20,7 +20,7 @@ class UserController extends Controller
         $this->validate($request,[
             'address'  => 'required',
             'bio' => 'required|min:20',
-            'experience' => 'required|min:20',
+            'experience' => 'required|min:6',
             // 'phone_number' => 'required|min:10|numeric',
             'phone_number' => 'required|regex:/[0-9]{10}/',
         ]);

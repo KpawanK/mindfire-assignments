@@ -17,4 +17,7 @@ class Post extends Model
         'status',
         'image',
     ];
+    // public function scopeActive($query){
+    //     return $query->where('status','1');
+    // }
 }

@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-3">
             @if(empty(Auth::user()->company->logo))
-                <img src="{{asset('avatar/serwman1.jpg')}}" alt="company logo" width="100" style="width: 100%;">
+                <img src="{{asset('avatar/man.jpg')}}" alt="company logo" width="100" style="width: 100%;">
             @else 
                 <img src="{{asset('uploads/logo')}}/{{Auth::user()->company->logo}}" alt="Company logo" width="100" style="width:100%">
             @endif
@@ -18,14 +18,14 @@
                 <div class="card-body">
                     <form action="{{route('company.logo')}}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input type="file" name="company_logo" class="form-control">
+                        <input type="file" name="company_logo" class="form-control @error('company_logo') is-invalid @enderror">
+                        @error('company_logo')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                         <br>
                         <button class="btn btn-dark float-right" type="submit">Update</button>
-                        @if($errors->has('avatar'))
-                        <div class="error" style="color:red;">
-                            {{$errors->first('avatar')}}
-                        </div>
-                    @endif
                     </form>
                 </div>
             </div>
@@ -40,27 +40,52 @@
                         @csrf
                         <div class="form-group">
                             <label for="">Address</label>
-                            <input type="text" name="address" value="{{Auth::user()->company->address}}" class="form-control">
+                            <input type="text" name="address" value="{{Auth::user()->company->address}}" class="form-control @error('company_logo') is-invalid @enderror">
+                            @error('address')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>     
                         
                         <div class="form-group">
                             <label for="">Phone</label>
-                            <input type="text" name="phone" value="{{Auth::user()->company->phone}}" class="form-control">
+                            <input type="text" name="phone" value="{{Auth::user()->company->phone}}" class="form-control @error('phone') is-invalid @enderror">
+                            @error('phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>     
 
                         <div class="form-group">
                             <label for="">Website</label>
-                            <input type="text" name="website" value="{{Auth::user()->company->website}}" class="form-control">
+                            <input type="text" name="website" value="{{Auth::user()->company->website}}" class="form-control @error('website') is-invalid @enderror">
+                            @error('website')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>     
 
                         <div class="form-group">
                             <label for="">Slogan</label>
-                            <input type="text" name="slogan" value="{{Auth::user()->company->slogan}}"class="form-control">
+                            <input type="text" name="slogan" value="{{Auth::user()->company->slogan}}"class="form-control @error('slogan') is-invalid @enderror">
+                            @error('slogan')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>     
 
                         <div class="form-group">
                             <label for="">Description</label>
-                            <textarea name="description" class="form-control">{{Auth::user()->company->description}}</textarea>
+                            <textarea name="description" class="form-control @error('description') is-invalid @enderror">{{Auth::user()->company->description}}</textarea>
+                            @error('description')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>     
                        
                         <div class="form-group">
@@ -103,14 +128,14 @@
                 <div class="card-body">
                     <form action="{{route('cover.photo')}}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input type="file" name="cover_photo" class="form-control">
+                        <input type="file" name="cover_photo" class="form-control @error('cover_photo') is-invalid @enderror">
+                        @error('cover_photo')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                        @enderror
                         <br>
                         <button class="btn btn-dark float-right" type="submit">Update</button>
-                        @if($errors->has('cover_photo'))
-                                <div class="error" style="color:red;">
-                                    {{$errors->first('cover_photo')}}
-                                </div>
-                            @endif
                     </form>
                 </div>
             </div>

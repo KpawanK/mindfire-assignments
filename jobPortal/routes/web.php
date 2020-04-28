@@ -87,3 +87,15 @@ Route::get('/dashboard/trash','DashboardController@trash')->middleware('admin');
 Route::get('/dashboard/{id}/trash','DashboardController@restore')->name('post.restore')->middleware('admin');
 //toggle the status 
 Route::get('/dashboard/{id}/toggle','DashboardController@toggle')->name('post.toggle')->middleware('admin');
+//to read the blog posted by admin from home page here we dont need admin middleware as we want anyone to read this blog post
+Route::get('/post/{id}/{slug}','DashboardController@show')->name('post.show');
+//to display all the jobs for the admin to control
+Route::get('/dashboard/jobs','DashboardController@getAllJobs')->name('job.show')->middleware('admin');
+//toggling the jobs
+Route::get('/dashboard/{id}/jobs','DashboardController@changeJobStatus')->name('job.status')->middleware('admin');
+
+//Testimonial routes
+Route::get('testimonial','TestimonialController@index')->middleware('admin');
+Route::get('testimonial/create','TestimonialController@create')->middleware('admin');
+//after creating the testimonial u need to submit so to submit post method and middleware so that only admin can access this
+Route::post('testimonial/create','TestimonialController@store')->name('testimonial.store')->middleware('admin');

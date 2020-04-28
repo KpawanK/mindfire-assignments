@@ -21,7 +21,7 @@
                                 <tr>
                                     <td>
                                         @if(empty(Auth::user()->company->logo))
-                                            <img src="{{asset('avatar/serwman1.jpg')}}" alt="company logo" width="100" style="width: 50%;">
+                                            <img src="{{asset('avatar/man1.jpg')}}" alt="company logo" width="100" style="width: 50%;">
                                         @else 
                                             <img src="{{asset('uploads/logo')}}/{{Auth::user()->company->logo}}" alt="Company logo" width="100" style="width:50%">
                                         @endif

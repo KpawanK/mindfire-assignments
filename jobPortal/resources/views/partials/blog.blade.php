@@ -9,12 +9,14 @@
         @foreach ( $posts as $post )
           <div class="media-with-text">
             <div class="img-border-sm mb-4">
-              <a href="#" class="image-play">
+              <a href="{{route('post.show',[$post->id,$post->slug])}}" class="image-play">
                 <img src="{{asset('storage/'.$post->image)}}" class="img-fluid">
-              </a>
             </div>
             <h2 class="heading mb-0 h5"><a href="#">{{$post->title}}</a></h2>
-            <span class="mb-3 d-block post-date">{{$post->created_at->diffForHumans()}} &bullet; By <a href="#">Admin</a></span>
+            <span class="mb-3 d-block post-date">
+            </a>
+              {{$post->created_at->diffForHumans()}} &bullet; By <a href="#">Admin</a>
+            </span>
             <p>{{str_limit($post->content,50)}}</p>
           </div>
         @endforeach
