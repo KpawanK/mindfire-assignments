@@ -4,14 +4,7 @@ import Aux from '../../../hoc/Aux/Aux';
 import Button from '../../UI/Button/Button';
 
 class OrderSummary extends Component{
-    //This could be a functional component and doesn't need to be class  just to debug this component was converted to class based
-
-    // to highlight that we are updating this component 
-    // unecessaryly this gets updated or rerendered so in modal js folder we have implemented a shouldComponentUpdate will check is it necessary to re-render the madal js as ordersummary is wrapped inside the modal in burgerbuilder js folder
-    componentDidUpdate(){
-        console.log('[OrderSummary] Updated');
-    }
-
+    
     render(){
         const ingredientSummary = Object.keys(this.props.ingredients)
         .map(igkey => {
